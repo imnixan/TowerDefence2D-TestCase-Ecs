@@ -1,7 +1,6 @@
 ﻿using Leopotam.Ecs;
 
 using EpPathFinding.cs;
-
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -25,6 +24,7 @@ public class EnemyTargetDispencerSystem : IEcsInitSystem, IEcsRunSystem
 
     public void Run()
     {
+        double startRun = Time.realtimeSinceStartup;
         if (noNavFilter.GetEntitiesCount() > 0)
         {
             foreach (int i in noNavFilter)
@@ -36,7 +36,6 @@ public class EnemyTargetDispencerSystem : IEcsInitSystem, IEcsRunSystem
                 navigatedComp.Path = GetPathForNearestTower(ref obj);
                 if (navigatedComp.Path != null)
                 {
-                    Debug.Log("nav path " + navigatedComp.Path);
                     ref HasTargets hasTargets = ref obj.Get<HasTargets>();
                     hasTargets.KillList.Add(closestTower);
                 }
@@ -46,6 +45,7 @@ public class EnemyTargetDispencerSystem : IEcsInitSystem, IEcsRunSystem
                 }
             }
         }
+        Debug.Log("GetPath take " + (Time.realtimeSinceStartupAsDouble - startRun));
     }
 
     private List<GridPos> GetPathForNearestTower(ref EcsEntity entity)

@@ -57,9 +57,7 @@ public class GameMapGenerator : MonoBehaviour
     {
         foreach (Transform obstacle in obstacles)
         {
-            Debug.Log($"walkablelengt = {walkableList.Count} before remove");
             walkableList.Remove(obstacle.position.ConvertToNav());
-            Debug.Log($"walkablelengt = {walkableList.Count} after remove");
         }
     }
 

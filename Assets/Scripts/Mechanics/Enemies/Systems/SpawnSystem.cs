@@ -7,6 +7,7 @@ class SpawnSystem : IEcsRunSystem, IEcsInitSystem
     private StaticData staticData;
     private EcsWorld world;
     private PoolSystem pool;
+
     private int maxTop,
         maxRight;
 
@@ -27,10 +28,12 @@ class SpawnSystem : IEcsRunSystem, IEcsInitSystem
 
     public void Run()
     {
+        double startRun = Time.realtimeSinceStartupAsDouble;
         if (enemyFilter.GetEntitiesCount() < staticData.MaxEnemies)
         {
             SpawnEnemy();
         }
+        Debug.Log("Spawn take " + (Time.realtimeSinceStartupAsDouble - startRun));
     }
 
     private void SpawnEnemy()
@@ -51,7 +54,6 @@ class SpawnSystem : IEcsRunSystem, IEcsInitSystem
 
         ref Attacker attacker = ref enemyEntity.Get<Attacker>();
         attacker.AttackRange = staticData.EnemiesAttackRange[(int)enemy.EnemyType];
-        Debug.Log("test");
     }
 
     private Vector2 GetSpawnPoint()
