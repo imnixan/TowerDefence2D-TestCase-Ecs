@@ -7,6 +7,13 @@
       "dependencies": {},
       "hash": "1213c31c9ef8325d48e74a52b345c4db242d038b"
     },
+    "com.leopotam.ecs-threads": {
+      "version": "https://github.com/Leopotam/ecs-threads.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "5ce4c94a79b92d69ddf5061bf861afde64324738"
+    },
     "com.unity.2d.animation": {
       "version": "5.2.6",
       "depth": 0,
