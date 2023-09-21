@@ -10,7 +10,6 @@ public class GameStarter : MonoBehaviour
     [SerializeField]
     private GameMapGenerator gameMapGenerator;
 
-    [SerializeField]
     private EcsStartup ecsStartup;
 
     [SerializeField]
@@ -18,7 +17,9 @@ public class GameStarter : MonoBehaviour
 
     private void Start()
     {
+        ecsStartup = gameObject.AddComponent<EcsStartup>();
         gameMapGenerator.GenerateMap(staticData);
+        staticData.InitData();
         ecsStartup.StartGame(staticData, poolSystem);
     }
 }

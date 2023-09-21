@@ -22,6 +22,7 @@ public class PoolSystem : MonoBehaviour
         {
             go = Instantiate(enemyPrefab);
         }
+
         return go;
     }
 

@@ -4,30 +4,41 @@ using UnityEngine;
 public class EcsStartup : MonoBehaviour
 {
     EcsWorld world;
-    EcsSystems systems;
-
-    private StaticData staticData;
-    private PoolSystem pool;
+    EcsSystems UpdateSystems,
+        FixedUpdateSystems;
 
     public void StartGame(StaticData staticData, PoolSystem pool)
     {
-        this.staticData = staticData;
-        this.pool = pool;
         world = new EcsWorld();
-        systems = new EcsSystems(world);
-        systems.Init();
+        UpdateSystems = new EcsSystems(world);
+        UpdateSystems
+            .Add(new SpawnSystem())
+            .Add(new EnemyTargetDispencerSystem())
+            .Add(new AttackSystem())
+            .Inject(staticData)
+            .Inject(pool)
+            .Init();
+        FixedUpdateSystems = new EcsSystems(world);
+        FixedUpdateSystems.Add(new MovingSystem()).Inject(staticData).Init();
     }
 
     void Update()
     {
-        // Выполняем все подключенные системы.
-        systems.Run();
+        if (UpdateSystems != null)
+        {
+            UpdateSystems?.Run();
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        FixedUpdateSystems?.Run();
     }
 
     void OnDestroy()
     {
         // Уничтожаем подключенные системы.
-        systems.Destroy();
+        UpdateSystems.Destroy();
         // Очищаем окружение.
         world.Destroy();
     }
