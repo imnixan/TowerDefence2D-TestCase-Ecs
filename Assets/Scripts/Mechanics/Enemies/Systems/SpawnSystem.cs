@@ -1,4 +1,5 @@
 using Leopotam.Ecs;
+using System;
 using UnityEngine;
 
 class SpawnSystem : IEcsRunSystem, IEcsInitSystem
@@ -15,15 +16,6 @@ class SpawnSystem : IEcsRunSystem, IEcsInitSystem
     {
         maxTop = staticData.FieldSize.y / 2;
         maxRight = staticData.FieldSize.x / 2;
-        foreach (Transform tower in staticData.towers)
-        {
-            EcsEntity towerEntity = world.NewEntity();
-            ref Tower towerComp = ref towerEntity.Get<Tower>();
-            ref ObjectComponent objComp = ref towerEntity.Get<ObjectComponent>();
-            objComp.ObGo = tower.gameObject;
-            objComp.ObTransform = tower;
-            objComp.ObSr = tower.gameObject.GetComponent<SpriteRenderer>();
-        }
     }
 
     public void Run()
@@ -38,34 +30,38 @@ class SpawnSystem : IEcsRunSystem, IEcsInitSystem
     {
         EcsEntity enemyEntity = world.NewEntity();
         ref Enemy enemy = ref enemyEntity.Get<Enemy>();
-        enemy.EnemyType = StaticData.EnemyType.Goblin;
+        enemy.EnemyType = (StaticData.EnemyType)
+            UnityEngine.Random.Range(0, Enum.GetNames(typeof(StaticData.EnemyType)).Length);
 
         ref ObjectComponent enemyObj = ref enemyEntity.Get<ObjectComponent>();
-        enemyObj.ObGo = pool.GetEnemyObject();
-        enemyObj.ObSr = enemyObj.ObGo.GetComponent<SpriteRenderer>();
-        enemyObj.ObTransform = enemyObj.ObGo.transform;
-        enemyObj.ObTransform.position = GetSpawnPoint();
+        enemyEntity.AddObjectComp(staticData, pool, StaticData.UnitType.Enemy);
+        enemyObj.ObTransform.position = GetSpawnPoint(enemy.EnemyType);
 
-        ref Movable movableComp = ref enemyEntity.Get<Movable>();
-        movableComp.ObjectTransform = enemyObj.ObGo.transform;
-        movableComp.Speed = staticData.EnemiesSpeed[(int)enemy.EnemyType];
-        movableComp.Rb = enemyObj.ObGo.GetComponent<Rigidbody2D>();
-        ref MeleeAttacker attacker = ref enemyEntity.Get<MeleeAttacker>();
-        attacker.AttackRange = staticData.EnemiesAttackRange[(int)enemy.EnemyType];
+        enemyEntity.AddMovable(staticData);
+
+        UnitData unit = staticData.EnemiesData[(int)enemy.EnemyType];
+
+        enemyEntity.AddAttacker(staticData);
     }
 
-    private Vector2 GetSpawnPoint()
+    private Vector2 GetSpawnPoint(StaticData.EnemyType enemy)
     {
-        bool fromVertical = Random.value > 0.5f;
+        bool fromVertical = UnityEngine.Random.value > 0.5f;
         if (fromVertical)
         {
-            bool fromTop = Random.value > 0.5f;
-            return new Vector2(Random.Range(-maxRight, maxRight), fromTop ? maxTop - 1 : -maxTop);
+            bool fromTop = UnityEngine.Random.value > 0.5f;
+            return new Vector2(
+                UnityEngine.Random.Range(-maxRight, maxRight),
+                fromTop ? maxTop - 1 : -maxTop
+            );
         }
         else
         {
-            bool fromRight = Random.value > 0.5f;
-            return new Vector2(fromRight ? maxRight - 1 : -maxRight, Random.Range(-maxTop, maxTop));
+            bool fromRight = UnityEngine.Random.value > 0.5f;
+            return new Vector2(
+                fromRight ? maxRight - 1 : -maxRight,
+                UnityEngine.Random.Range(-maxTop, maxTop)
+            );
         }
     }
 }

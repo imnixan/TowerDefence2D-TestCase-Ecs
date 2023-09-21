@@ -12,10 +12,15 @@ public class EcsStartup : MonoBehaviour
         world = new EcsWorld();
         UpdateSystems = new EcsSystems(world);
         UpdateSystems
+            .Add(new BaseTowersInit())
             .Add(new SpawnSystem())
             .Add(new EnemyTargetDispencerSystem())
             .Add(new StopToAttackSystem())
             .Add(new AttackSystem())
+            .Add(new DamageSystem())
+            .OneFrame<DamageRecieveMarker>()
+            .Add(new CleaningTargetsSystem())
+            .Add(new DeathSystem())
             .Inject(staticData)
             .Inject(pool)
             .Init();
@@ -35,9 +40,18 @@ public class EcsStartup : MonoBehaviour
 
     void OnDestroy()
     {
-        // Уничтожаем подключенные системы.
-        UpdateSystems.Destroy();
+        if (UpdateSystems != null)
+        {
+            UpdateSystems.Destroy();
+        }
+        if (FixedUpdateSystems != null)
+        {
+            FixedUpdateSystems.Destroy();
+        }
         // Очищаем окружение.
-        world.Destroy();
+        if (world != null)
+        {
+            world.Destroy();
+        }
     }
 }

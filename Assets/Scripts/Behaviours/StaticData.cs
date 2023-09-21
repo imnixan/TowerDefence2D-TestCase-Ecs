@@ -5,12 +5,9 @@ using EpPathFinding.cs;
 
 public class StaticData : MonoBehaviour
 {
-    [SerializeField]
-    private float GoblinRechargeTime,
-        GoblinMovespeed,
-        GoblinAttackRange,
-        GoblinDamage,
-        GoblinHp;
+    public UnitData[] EnemiesData,
+        TowersData;
+
     public int MaxEnemies;
     public BaseGrid Field;
     public JumpPointParam PathSearchingParams;
@@ -20,24 +17,21 @@ public class StaticData : MonoBehaviour
     public float TowerDamage;
     public Transform towers;
 
-    public Dictionary<int, float> EnemiesRechargeTime;
-    public Dictionary<int, float> EnemiesSpeed;
-    public Dictionary<int, float> EnemiesAttackRange;
-    public Dictionary<int, float> EnemiesAttackDamage;
-    public Dictionary<int, float> EnemiesHp;
+    public enum UnitType
+    {
+        Enemy,
+        Tower
+    }
 
     public enum EnemyType
     {
-        Goblin,
-        Wolf
+        Goblin
     }
 
-    public void InitData()
+    public enum TowerType
     {
-        EnemiesRechargeTime = new Dictionary<int, float> { { 0, GoblinMovespeed } };
-        EnemiesAttackRange = new Dictionary<int, float> { { 0, GoblinAttackRange } };
-        EnemiesSpeed = new Dictionary<int, float> { { 0, GoblinMovespeed } };
-        EnemiesAttackDamage = new Dictionary<int, float> { { 0, GoblinDamage } };
-        EnemiesHp = new Dictionary<int, float> { { 0, GoblinHp } };
+        BaseTower,
+        DefenceTower,
+        AttackTower
     }
 }

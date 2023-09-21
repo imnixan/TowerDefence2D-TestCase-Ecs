@@ -15,30 +15,31 @@ struct Movable
     public float Speed;
 }
 
-struct MeleeAttacker
+struct Attacker
 {
     public float AttackRange;
     public float Damage;
+    public float RechargeTime;
 }
 
-struct RangeAttacker
+struct RangeAttackUnit
 {
-    public float AttackRange;
-    public float Damage;
+    public Sprite projectile;
 }
 
-struct HasTargets : IEcsAutoReset<HasTargets>
+struct MeleeAttackUnit { }
+
+struct HasTarget : IEcsAutoReset<HasTarget>
 {
     public List<EcsEntity> KillList;
 
-    public void AutoReset(ref HasTargets c)
+    public void AutoReset(ref HasTarget c)
     {
         c.KillList = new List<EcsEntity>();
     }
 }
 
-struct Attacking
+struct InBattleMarker
 {
-    public float AttackRecharge;
     public float LastAttack;
 }

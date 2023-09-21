@@ -837,7 +837,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1271931568}
   - component: {fileID: 1271931570}
-  - component: {fileID: 1271931569}
   m_Layer: 0
   m_Name: StaticData
   m_TagString: Untagged
@@ -860,18 +859,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1271931569
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1271931567}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1fb8135dd7236e24d81498e2fee4dd90, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1271931570
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -884,11 +871,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c650b6de0434cf45bf0f910d3e398d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GoblinRechargeTime: 1
-  GoblinMovespeed: 0.1
-  GoblinAttackRange: 1
-  GoblinDamage: 1
-  GoblinHp: 0
+  EnemiesData:
+  - {fileID: 11400000, guid: 4ea06b36fa780334e84d21d567acc6d6, type: 2}
+  TowersData:
+  - {fileID: 11400000, guid: 11c800e4905a4c54db4464b7efc89381, type: 2}
   MaxEnemies: 500
   FieldSize: {x: 100, y: 100}
   TowerAttackRange: 0
@@ -100377,6 +100363,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1782140953}
   - component: {fileID: 1782140952}
+  - component: {fileID: 1782140954}
   m_Layer: 0
   m_Name: GameStarter
   m_TagString: Untagged
@@ -100414,6 +100401,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1782140954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1782140951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fb8135dd7236e24d81498e2fee4dd90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1911829733
 GameObject:
   m_ObjectHideFlags: 0

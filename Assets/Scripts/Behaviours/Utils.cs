@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 using EpPathFinding.cs;
+using Leopotam.Ecs;
 
 public static class Utils
 {

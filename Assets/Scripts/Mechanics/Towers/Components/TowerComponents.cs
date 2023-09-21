@@ -1,1 +1,6 @@
-﻿struct Tower { }
+﻿struct Tower
+{
+    public StaticData.TowerType TowerType;
+}
+
+struct BaseTowerMarker { }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(EcsStartup))]
 public class GameStarter : MonoBehaviour
 {
     [SerializeField]
@@ -18,9 +19,8 @@ public class GameStarter : MonoBehaviour
     private void Start()
     {
         Application.targetFrameRate = 300;
-        ecsStartup = gameObject.AddComponent<EcsStartup>();
+        ecsStartup = GetComponent<EcsStartup>();
         gameMapGenerator.GenerateMap(staticData);
-        staticData.InitData();
         ecsStartup.StartGame(staticData, poolSystem);
     }
 }

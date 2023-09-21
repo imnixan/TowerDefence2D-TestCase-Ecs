@@ -4,28 +4,33 @@ using Leopotam.Ecs;
 
 public class AttackSystem : IEcsRunSystem
 {
-    private EcsFilter<Attacking, MeleeAttacker, ObjectComponent, HasTargets> attackingFilter;
+    private EcsFilter<InBattleMarker, Attacker, ObjectComponent, HasTarget> attackingFilter;
     private StaticData staticData;
 
     public void Run()
     {
         foreach (int i in attackingFilter)
         {
-            ref Attacking attacking = ref attackingFilter.Get1(i);
-            ref MeleeAttacker attacker = ref attackingFilter.Get2(i);
+            ref InBattleMarker attacking = ref attackingFilter.Get1(i);
+            ref Attacker attacker = ref attackingFilter.Get2(i);
             ref ObjectComponent objComp = ref attackingFilter.Get3(i);
-            ref HasTargets hasTargets = ref attackingFilter.Get4(i);
+            ref HasTarget hasTargets = ref attackingFilter.Get4(i);
 
-            ref ObjectComponent targetObjComp = ref hasTargets.KillList[0].Get<ObjectComponent>();
+            EcsEntity targetEntity = hasTargets.KillList[0];
+            ref ObjectComponent targetObjComp = ref targetEntity.Get<ObjectComponent>();
 
             if (
                 Vector2.Distance(objComp.ObTransform.position, targetObjComp.ObTransform.position)
                 <= attacker.AttackRange
             )
             {
-                if (attacking.LastAttack + attacking.AttackRecharge <= Time.time)
+                if (attacking.LastAttack + attacker.RechargeTime <= Time.time)
                 {
                     attacking.LastAttack = Time.time;
+
+                    ref DamageRecieveMarker damageReciever =
+                        ref targetEntity.Get<DamageRecieveMarker>();
+                    damageReciever.Damage += attacker.Damage;
                 }
             }
             else
@@ -34,11 +39,9 @@ public class AttackSystem : IEcsRunSystem
                 if (entity.Has<Enemy>())
                 {
                     ref Enemy enemy = ref entity.Get<Enemy>();
-                    entity.Del<Attacking>();
-                    ref Movable entityMovable = ref entity.Get<Movable>();
-                    entityMovable.ObjectTransform = objComp.ObGo.transform;
-                    entityMovable.Speed = staticData.EnemiesSpeed[(int)enemy.EnemyType];
-                    entityMovable.Rb = objComp.ObGo.GetComponent<Rigidbody2D>();
+                    entity.Del<InBattleMarker>();
+
+                    entity.AddMovable(staticData);
                 }
             }
         }

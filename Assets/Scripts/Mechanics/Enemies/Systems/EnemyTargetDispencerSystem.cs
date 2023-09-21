@@ -9,7 +9,7 @@ public class EnemyTargetDispencerSystem : IEcsInitSystem, IEcsRunSystem
     private EcsWorld world;
     private StaticData staticData;
 
-    private EcsFilter<Movable, Enemy>.Exclude<Navigated, Attacking> noNavFilter;
+    private EcsFilter<Movable, Enemy>.Exclude<Navigated, InBattleMarker> noNavFilter;
     private EcsFilter<Tower> towersFilter;
     private BaseGrid field;
     private JumpPointParam pathSearchingParams;
@@ -36,7 +36,8 @@ public class EnemyTargetDispencerSystem : IEcsInitSystem, IEcsRunSystem
                 navigatedComp.Path = GetPathForNearestTower(ref obj);
                 if (navigatedComp.Path != null)
                 {
-                    ref HasTargets hasTargets = ref obj.Get<HasTargets>();
+                    ref HasTarget hasTargets = ref obj.Get<HasTarget>();
+                    hasTargets.KillList.Clear();
                     hasTargets.KillList.Add(closestTower);
                 }
                 else
