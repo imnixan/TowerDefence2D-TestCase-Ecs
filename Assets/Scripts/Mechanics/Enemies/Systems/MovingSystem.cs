@@ -25,7 +25,9 @@ sealed class MovingSystem : IEcsRunSystem
                     entity.Del<Navigated>();
                     return;
                 }
-                finalPos = navigation.Path[navigation.PathPointIndex].ConvertToWorld();
+                finalPos = navigation.Path[navigation.PathPointIndex].ConvertToWorld(
+                    staticData.FieldSize
+                );
 
                 movable.Rb.MovePosition(
                     Vector2.MoveTowards(movTransform.position, finalPos, movable.Speed)
