@@ -216,6 +216,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -270,6 +271,54 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -1637,6 +1686,71 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      FieldsTileset_0: 4952304577596609575
+      FieldsTileset_1: -9161881788977170880
+      FieldsTileset_10: -4870451808808141579
+      FieldsTileset_11: -6688196374025758322
+      FieldsTileset_12: -373257618082884348
+      FieldsTileset_13: -7083070268296346926
+      FieldsTileset_14: 3204449525677918021
+      FieldsTileset_15: 3286975368997245741
+      FieldsTileset_16: 2190014183456287199
+      FieldsTileset_17: -908602606969627818
+      FieldsTileset_18: -7015609646145113976
+      FieldsTileset_19: -6020031187949761441
+      FieldsTileset_2: -1543639313122339653
+      FieldsTileset_20: 2850304446893366963
+      FieldsTileset_21: 152332570506040386
+      FieldsTileset_22: -144129164466154513
+      FieldsTileset_23: 2749456451770959442
+      FieldsTileset_24: -6339739102995358198
+      FieldsTileset_25: 643424623502227371
+      FieldsTileset_26: 993797851687805043
+      FieldsTileset_27: 924836896221514522
+      FieldsTileset_28: -4688218345734759651
+      FieldsTileset_29: -4626171223475694077
+      FieldsTileset_3: -8974232486063645388
+      FieldsTileset_30: -3933095858835721619
+      FieldsTileset_31: 3784476809248143366
+      FieldsTileset_32: -7942685748021641494
+      FieldsTileset_33: 2506879654401515541
+      FieldsTileset_34: 3798660518879649720
+      FieldsTileset_35: 5727294048259617404
+      FieldsTileset_36: 4054072569805042150
+      FieldsTileset_37: -6216831481947935221
+      FieldsTileset_38: 2039683971901489407
+      FieldsTileset_39: 1730444112046499266
+      FieldsTileset_4: -2096757367667079355
+      FieldsTileset_40: 5874776380313254799
+      FieldsTileset_41: 4571136144742024144
+      FieldsTileset_42: 2289594756706846359
+      FieldsTileset_43: -4520603816323971540
+      FieldsTileset_44: 5021517197498418438
+      FieldsTileset_45: -6618895308719729069
+      FieldsTileset_46: -5517691682265703557
+      FieldsTileset_47: 7851646255098011729
+      FieldsTileset_48: 5797568842087249956
+      FieldsTileset_49: -8345104729313043346
+      FieldsTileset_5: -4580815373995528545
+      FieldsTileset_50: -1680745530285725237
+      FieldsTileset_51: -8331876945333625247
+      FieldsTileset_52: 6244205613310692276
+      FieldsTileset_53: -5906503934621479026
+      FieldsTileset_54: -4845150108838103071
+      FieldsTileset_55: -608266765597410473
+      FieldsTileset_56: 1427787429486592183
+      FieldsTileset_57: -5260819737556846409
+      FieldsTileset_58: 975517282181595216
+      FieldsTileset_59: 4439512600213717300
+      FieldsTileset_6: -5694106856972953501
+      FieldsTileset_60: 5082719239835806891
+      FieldsTileset_61: -320757424835096692
+      FieldsTileset_62: 7773377435239814083
+      FieldsTileset_63: 7925781124936037806
+      FieldsTileset_7: 413215482934784682
+      FieldsTileset_8: 8169033012998438157
+      FieldsTileset_9: 5262426964820627421
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

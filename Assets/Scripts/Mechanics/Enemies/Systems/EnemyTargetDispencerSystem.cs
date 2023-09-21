@@ -56,8 +56,8 @@ public class EnemyTargetDispencerSystem : IEcsInitSystem, IEcsRunSystem
         if (closestTower != EcsEntity.Null)
         {
             ref ObjectComponent objComp = ref closestTower.Get<ObjectComponent>();
-            finalPos = objComp.ObTransform.position.ConvertToNav();
-            pathSearchingParams.Reset(startPos.ConvertToNav(), finalPos);
+            finalPos = objComp.ObTransform.position.ConvertToNav(staticData.FieldSize);
+            pathSearchingParams.Reset(startPos.ConvertToNav(staticData.FieldSize), finalPos);
             return JumpPointFinder.FindPath(pathSearchingParams);
         }
         return null;
