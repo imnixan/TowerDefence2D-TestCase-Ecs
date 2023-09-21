@@ -18,16 +18,13 @@ public class GameMapGenerator : MonoBehaviour
     [SerializeField]
     private Sprite[] obstaclesSprites;
 
-    private List<GridPos> walkableList = new List<GridPos>();
     private StaticData staticData;
 
     public void GenerateMap(StaticData staticData)
     {
         this.staticData = staticData;
-        SetAllWalkable();
-        CreateObstacles(staticData);
-        SetUnwalkable();
-        BaseGrid field = new DynamicGrid(walkableList);
+        BaseGrid field = new StaticGrid(staticData.FieldSize.x, staticData.FieldSize.y);
+        SetAllWalkable(field);
         staticData.Field = field;
 
         DiagonalMovement iDiagonalMovement = DiagonalMovement.OnlyWhenNoObstacles;
@@ -38,30 +35,23 @@ public class GameMapGenerator : MonoBehaviour
             iDiagonalMovement
         );
 
+        CreateObstacles(staticData, field);
         staticData.PathSearchingParams = pathSearcher;
         staticData.towers = towers;
     }
 
-    private void SetAllWalkable()
+    private void SetAllWalkable(BaseGrid field)
     {
         for (int x = 0; x < staticData.FieldSize.x; x++)
         {
             for (int y = 0; y < staticData.FieldSize.y; y++)
             {
-                walkableList.Add(new GridPos(x, y));
+                field.SetWalkableAt(new GridPos(x, y), true);
             }
         }
     }
 
-    private void SetUnwalkable()
-    {
-        foreach (Transform obstacle in obstacles)
-        {
-            walkableList.Remove(obstacle.position.ConvertToNav());
-        }
-    }
-
-    private void CreateObstacles(StaticData staticData)
+    private void CreateObstacles(StaticData staticData, BaseGrid field)
     {
         int spawnChanse;
         GridPos point = new GridPos();
@@ -77,6 +67,7 @@ public class GameMapGenerator : MonoBehaviour
                     Instantiate(obstaclePref, point.ConvertToWorld(), new Quaternion(), obstacles)
                         .GetComponent<SpriteRenderer>()
                         .sprite = obstaclesSprites[Random.Range(0, obstaclesSprites.Length)];
+                    field.SetWalkableAt(new GridPos(x, y), false);
                 }
             }
         }

@@ -858,7 +858,7 @@ MonoBehaviour:
   GoblinMovespeed: 0.1
   GoblinAttackRange: 1
   GoblinDamage: 1
-  MaxEnemies: 100
+  MaxEnemies: 10000
   FieldSize: {x: 100, y: 100}
   TowerAttackRange: 0
   TowerRechargeTime: 0

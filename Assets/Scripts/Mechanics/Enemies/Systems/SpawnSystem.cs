@@ -28,12 +28,10 @@ class SpawnSystem : IEcsRunSystem, IEcsInitSystem
 
     public void Run()
     {
-        double startRun = Time.realtimeSinceStartupAsDouble;
         if (enemyFilter.GetEntitiesCount() < staticData.MaxEnemies)
         {
             SpawnEnemy();
         }
-        Debug.Log("Spawn take " + (Time.realtimeSinceStartupAsDouble - startRun));
     }
 
     private void SpawnEnemy()
@@ -62,12 +60,12 @@ class SpawnSystem : IEcsRunSystem, IEcsInitSystem
         if (fromVertical)
         {
             bool fromTop = Random.value > 0.5f;
-            return new Vector2(Random.Range(-maxRight, maxRight), fromTop ? maxTop : -maxTop);
+            return new Vector2(Random.Range(-maxRight, maxRight), fromTop ? maxTop - 1 : -maxTop);
         }
         else
         {
             bool fromRight = Random.value > 0.5f;
-            return new Vector2(fromRight ? maxRight : -maxRight, Random.Range(-maxTop, maxTop));
+            return new Vector2(fromRight ? maxRight - 1 : -maxRight, Random.Range(-maxTop, maxTop));
         }
     }
 }
