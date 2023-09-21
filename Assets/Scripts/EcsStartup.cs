@@ -14,8 +14,8 @@ public class EcsStartup : MonoBehaviour
         UpdateSystems
             .Add(new SpawnSystem())
             .Add(new EnemyTargetDispencerSystem())
-            //.Add(new StopToAttackSystem())
-            //.Add(new AttackSystem())
+            .Add(new StopToAttackSystem())
+            .Add(new AttackSystem())
             .Inject(staticData)
             .Inject(pool)
             .Init();
