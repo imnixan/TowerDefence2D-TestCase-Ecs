@@ -55,9 +55,11 @@ public class GameMapGenerator : MonoBehaviour
 
     private void SetUnwalkable()
     {
-        foreach (var obstacle in obstacles)
+        foreach (Transform obstacle in obstacles)
         {
-            walkableList.Remove(obstacles.position.ConvertToNav());
+            Debug.Log($"walkablelengt = {walkableList.Count} before remove");
+            walkableList.Remove(obstacle.position.ConvertToNav());
+            Debug.Log($"walkablelengt = {walkableList.Count} after remove");
         }
     }
 

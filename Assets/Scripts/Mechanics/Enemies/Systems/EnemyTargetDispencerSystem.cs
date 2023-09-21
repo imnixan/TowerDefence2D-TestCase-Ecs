@@ -25,22 +25,25 @@ public class EnemyTargetDispencerSystem : IEcsInitSystem, IEcsRunSystem
 
     public void Run()
     {
-        foreach (int i in noNavFilter)
+        if (noNavFilter.GetEntitiesCount() > 0)
         {
-            ref EcsEntity obj = ref noNavFilter.GetEntity(i);
-
-            ref Navigated navigatedComp = ref obj.Get<Navigated>();
-
-            navigatedComp.Path = GetPathForNearestTower(ref obj);
-            if (navigatedComp.Path != null)
+            foreach (int i in noNavFilter)
             {
-                Debug.Log("nav path " + navigatedComp.Path);
-                ref HasTargets hasTargets = ref obj.Get<HasTargets>();
-                hasTargets.KillList.Add(closestTower);
-            }
-            else
-            {
-                obj.Del<Movable>();
+                ref EcsEntity obj = ref noNavFilter.GetEntity(i);
+
+                ref Navigated navigatedComp = ref obj.Get<Navigated>();
+
+                navigatedComp.Path = GetPathForNearestTower(ref obj);
+                if (navigatedComp.Path != null)
+                {
+                    Debug.Log("nav path " + navigatedComp.Path);
+                    ref HasTargets hasTargets = ref obj.Get<HasTargets>();
+                    hasTargets.KillList.Add(closestTower);
+                }
+                else
+                {
+                    obj.Del<Movable>();
+                }
             }
         }
     }

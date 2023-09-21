@@ -17,6 +17,7 @@ public class GameStarter : MonoBehaviour
 
     private void Start()
     {
+        Application.targetFrameRate = 300;
         ecsStartup = gameObject.AddComponent<EcsStartup>();
         gameMapGenerator.GenerateMap(staticData);
         staticData.InitData();

@@ -10,27 +10,32 @@ sealed class MovingSystem : IEcsRunSystem
 
     public void Run()
     {
-        foreach (int i in movableFilter)
+        if (movableFilter.GetEntitiesCount() > 0)
         {
-            ref Movable movable = ref movableFilter.Get1(i);
-            Transform movTransform = movable.ObjectTransform;
-            ref Navigated navigation = ref movableFilter.Get2(i);
-            finalPos = navigation.Path[navigation.PathPointIndex].ConvertToWorld();
-
-            movTransform.position = Vector2.MoveTowards(
-                movTransform.position,
-                finalPos,
-                movable.Speed
-            );
-
-            if ((Vector2)movTransform.position == finalPos)
+            foreach (int i in movableFilter)
             {
-                navigation.PathPointIndex++;
+                ref Movable movable = ref movableFilter.Get1(i);
+                Transform movTransform = movable.ObjectTransform;
+                ref Navigated navigation = ref movableFilter.Get2(i);
+
                 if (navigation.PathPointIndex >= navigation.Path.Count)
                 {
                     ref EcsEntity entity = ref movableFilter.GetEntity(i);
                     entity.Del<Movable>();
                     entity.Del<Navigated>();
+                    return;
+                }
+                finalPos = navigation.Path[navigation.PathPointIndex].ConvertToWorld();
+
+                movTransform.position = Vector2.MoveTowards(
+                    movTransform.position,
+                    finalPos,
+                    movable.Speed
+                );
+
+                if ((Vector2)movTransform.position == finalPos)
+                {
+                    navigation.PathPointIndex++;
                 }
             }
         }

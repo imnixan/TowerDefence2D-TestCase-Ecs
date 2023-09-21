@@ -14,7 +14,8 @@ public class EcsStartup : MonoBehaviour
         UpdateSystems
             .Add(new SpawnSystem())
             .Add(new EnemyTargetDispencerSystem())
-            .Add(new AttackSystem())
+            //.Add(new StopToAttackSystem())
+            //.Add(new AttackSystem())
             .Inject(staticData)
             .Inject(pool)
             .Init();
@@ -24,10 +25,7 @@ public class EcsStartup : MonoBehaviour
 
     void Update()
     {
-        if (UpdateSystems != null)
-        {
-            UpdateSystems?.Run();
-        }
+        UpdateSystems?.Run();
     }
 
     private void FixedUpdate()
