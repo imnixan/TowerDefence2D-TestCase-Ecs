@@ -33,7 +33,7 @@ sealed class MovingSystem : IEcsRunSystem
                     Vector2.MoveTowards(movTransform.position, finalPos, movable.Speed)
                 );
 
-                if ((Vector2)movTransform.position == finalPos)
+                if (Vector2.Distance((Vector2)movTransform.position, finalPos) <= 0.75f)
                 {
                     navigation.PathPointIndex++;
                 }

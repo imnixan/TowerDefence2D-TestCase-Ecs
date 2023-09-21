@@ -4,7 +4,7 @@ using Leopotam.Ecs;
 
 public class AttackSystem : IEcsRunSystem
 {
-    private EcsFilter<Attacking, Attacker, ObjectComponent, HasTargets> attackingFilter;
+    private EcsFilter<Attacking, MeleeAttacker, ObjectComponent, HasTargets> attackingFilter;
     private StaticData staticData;
 
     public void Run()
@@ -12,7 +12,7 @@ public class AttackSystem : IEcsRunSystem
         foreach (int i in attackingFilter)
         {
             ref Attacking attacking = ref attackingFilter.Get1(i);
-            ref Attacker attacker = ref attackingFilter.Get2(i);
+            ref MeleeAttacker attacker = ref attackingFilter.Get2(i);
             ref ObjectComponent objComp = ref attackingFilter.Get3(i);
             ref HasTargets hasTargets = ref attackingFilter.Get4(i);
 

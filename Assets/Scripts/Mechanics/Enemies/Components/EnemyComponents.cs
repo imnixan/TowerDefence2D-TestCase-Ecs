@@ -15,7 +15,13 @@ struct Movable
     public float Speed;
 }
 
-struct Attacker
+struct MeleeAttacker
+{
+    public float AttackRange;
+    public float Damage;
+}
+
+struct RangeAttacker
 {
     public float AttackRange;
     public float Damage;

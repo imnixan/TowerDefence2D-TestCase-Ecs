@@ -5,7 +5,7 @@ using Leopotam.Ecs;
 sealed class StopToAttackSystem : IEcsRunSystem
 {
     private EcsWorld world;
-    private EcsFilter<Movable, Attacker, HasTargets> attackFilter;
+    private EcsFilter<Movable, MeleeAttacker, HasTargets> attackFilter;
     private float distanceToTarget;
 
     public void Run()
@@ -13,7 +13,7 @@ sealed class StopToAttackSystem : IEcsRunSystem
         foreach (int i in attackFilter)
         {
             ref EcsEntity attackerEntity = ref attackFilter.GetEntity(i);
-            ref Attacker attacker = ref attackFilter.Get2(i);
+            ref MeleeAttacker attacker = ref attackFilter.Get2(i);
             ref ObjectComponent objComp = ref attackerEntity.Get<ObjectComponent>();
             ref HasTargets wantKillTarget = ref attackFilter.Get3(i);
             ref ObjectComponent targetObjComp = ref wantKillTarget.KillList[

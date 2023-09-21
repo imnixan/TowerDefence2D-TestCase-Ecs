@@ -6,3 +6,13 @@ struct ObjectComponent
     public SpriteRenderer ObSr;
     public Transform ObTransform;
 }
+
+struct Health
+{
+    public float HP;
+}
+
+struct DamageRecieveMarker
+{
+    public float Damage;
+}
