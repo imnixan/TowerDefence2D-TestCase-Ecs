@@ -292,6 +292,7 @@ GameObject:
   m_Component:
   - component: {fileID: 563590505}
   - component: {fileID: 563590504}
+  - component: {fileID: 563590506}
   m_Layer: 0
   m_Name: Castle
   m_TagString: Untagged
@@ -364,6 +365,32 @@ Transform:
   m_Father: {fileID: 862863094}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &563590506
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 563590503}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.25}
+    oldSize: {x: 2.1875, y: 4.0625}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &765430821
 GameObject:
   m_ObjectHideFlags: 0
@@ -858,7 +885,7 @@ MonoBehaviour:
   GoblinMovespeed: 0.1
   GoblinAttackRange: 1
   GoblinDamage: 1
-  MaxEnemies: 10000
+  MaxEnemies: 1000
   FieldSize: {x: 100, y: 100}
   TowerAttackRange: 0
   TowerRechargeTime: 0

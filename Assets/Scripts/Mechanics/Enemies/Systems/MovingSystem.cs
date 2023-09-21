@@ -27,10 +27,8 @@ sealed class MovingSystem : IEcsRunSystem
                 }
                 finalPos = navigation.Path[navigation.PathPointIndex].ConvertToWorld();
 
-                movTransform.position = Vector2.MoveTowards(
-                    movTransform.position,
-                    finalPos,
-                    movable.Speed
+                movable.Rb.MovePosition(
+                    Vector2.MoveTowards(movTransform.position, finalPos, movable.Speed)
                 );
 
                 if ((Vector2)movTransform.position == finalPos)

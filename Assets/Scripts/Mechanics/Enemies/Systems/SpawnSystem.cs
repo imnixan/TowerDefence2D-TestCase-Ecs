@@ -49,7 +49,7 @@ class SpawnSystem : IEcsRunSystem, IEcsInitSystem
         ref Movable movableComp = ref enemyEntity.Get<Movable>();
         movableComp.ObjectTransform = enemyObj.ObGo.transform;
         movableComp.Speed = staticData.EnemiesSpeed[(int)enemy.EnemyType];
-
+        movableComp.Rb = enemyObj.ObGo.GetComponent<Rigidbody2D>();
         ref Attacker attacker = ref enemyEntity.Get<Attacker>();
         attacker.AttackRange = staticData.EnemiesAttackRange[(int)enemy.EnemyType];
     }

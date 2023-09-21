@@ -11,6 +11,7 @@ struct Enemy
 struct Movable
 {
     public Transform ObjectTransform;
+    public Rigidbody2D Rb;
     public float Speed;
 }
 
@@ -33,5 +34,5 @@ struct HasTargets : IEcsAutoReset<HasTargets>
 struct Attacking
 {
     public float AttackRecharge;
-    public float NextAttackTime;
+    public float LastAttack;
 }
