@@ -64,7 +64,12 @@ public class GameMapGenerator : MonoBehaviour
                 point.y = y;
                 if (spawnChanse < ObsPercent)
                 {
-                    Instantiate(obstaclePref, point.ConvertToWorld(), new Quaternion(), obstacles)
+                    Instantiate(
+                            obstaclePref,
+                            point.ConvertToWorld(staticData.FieldSize),
+                            new Quaternion(),
+                            obstacles
+                        )
                         .GetComponent<SpriteRenderer>()
                         .sprite = obstaclesSprites[Random.Range(0, obstaclesSprites.Length)];
                     field.SetWalkableAt(new GridPos(x, y), false);
