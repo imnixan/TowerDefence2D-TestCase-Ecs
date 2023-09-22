@@ -9,7 +9,7 @@ public class EnemyTargetDispencerSystem : IEcsInitSystem, IEcsRunSystem
     private EcsWorld world;
     private StaticData staticData;
 
-    private EcsFilter<Movable, Enemy, Attacker>.Exclude<HasTarget, InBattleMarker> noNavFilter;
+    private EcsFilter<Enemy, Attacker>.Exclude<Movable, HasTarget> noNavFilter;
     private EcsFilter<Tower, Health> aliveTowersFilter;
     private BaseGrid field;
     private JumpPointParam pathSearchingParams;
@@ -29,7 +29,7 @@ public class EnemyTargetDispencerSystem : IEcsInitSystem, IEcsRunSystem
             ref EcsEntity obj = ref noNavFilter.GetEntity(0);
             if (aliveTowersFilter.GetEntitiesCount() > 0)
             {
-                obj.Get<ObjectComponent>().ObSr.color = Color.blue;
+                obj.ChangeColor(Color.blue);
                 ref Navigated navigatedComp = ref obj.Get<Navigated>();
                 navigatedComp.Path = GetPathForNearestTower(ref obj);
                 ref HasTarget hasTargets = ref obj.Get<HasTarget>();
@@ -37,9 +37,8 @@ public class EnemyTargetDispencerSystem : IEcsInitSystem, IEcsRunSystem
             }
             else
             {
-                EcsEntity entity = noNavFilter.GetEntity(0);
-                entity.Del<Movable>();
-                ref ObjectComponent objComp = ref entity.Get<ObjectComponent>();
+                obj.Del<Attacker>();
+                ref ObjectComponent objComp = ref obj.Get<ObjectComponent>();
                 objComp.ObSr.color = Color.green;
             }
         }
@@ -47,8 +46,8 @@ public class EnemyTargetDispencerSystem : IEcsInitSystem, IEcsRunSystem
 
     private List<GridPos> GetPathForNearestTower(ref EcsEntity entity)
     {
-        ref Movable movable = ref entity.Get<Movable>();
-        Vector2 startPos = movable.ObjectTransform.position;
+        ref ObjectComponent pbjComp = ref entity.Get<ObjectComponent>();
+        Vector2 startPos = pbjComp.ObTransform.position;
 
         SetClosestTower(ref entity);
 

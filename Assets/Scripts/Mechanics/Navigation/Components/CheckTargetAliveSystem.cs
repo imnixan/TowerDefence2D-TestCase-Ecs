@@ -1,4 +1,5 @@
 ﻿using Leopotam.Ecs;
+using UnityEngine;
 
 public class CheckTargetAliveSystem : IEcsRunSystem
 {
@@ -16,10 +17,9 @@ public class CheckTargetAliveSystem : IEcsRunSystem
             {
                 entity.Del<HasTarget>();
                 entity.Del<InBattleMarker>();
-                if (entity.Has<Enemy>() && !entity.Has<Movable>())
-                {
-                    entity.AddMovable(staticData);
-                }
+                entity.Del<InBattleMarker>();
+                entity.ChangeColor(Color.red);
+                entity.AddMovable(staticData);
             }
         }
     }

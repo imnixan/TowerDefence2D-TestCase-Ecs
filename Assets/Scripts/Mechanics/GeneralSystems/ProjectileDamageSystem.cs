@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class ProjectileDamageSystem : IEcsRunSystem
 {
-    private EcsFilter<Projectile, ObjectComponent> projectiles;
+    private EcsFilter<Projectile, ObjectComponent>.Exclude<Movable> projectiles;
     private Pool objectsPool;
 
     public void Run()
@@ -12,13 +12,11 @@ public class ProjectileDamageSystem : IEcsRunSystem
         {
             ref Projectile projectile = ref projectiles.Get1(i);
             ref ObjectComponent objComp = ref projectiles.Get2(i);
-            if ((Vector2)objComp.ObTransform.position == projectile.Destination)
-            {
-                EcsEntity target = projectile.target;
-                ref DamageRecieveMarker damageMarker = ref target.Get<DamageRecieveMarker>();
-                damageMarker.Damage += projectile.Damage;
-                DestroyProjectile(projectiles.GetEntity(i));
-            }
+
+            EcsEntity target = projectile.target;
+            ref DamageRecieveMarker damageMarker = ref target.Get<DamageRecieveMarker>();
+            damageMarker.Damage += projectile.Damage;
+            DestroyProjectile(projectiles.GetEntity(i));
         }
     }
 

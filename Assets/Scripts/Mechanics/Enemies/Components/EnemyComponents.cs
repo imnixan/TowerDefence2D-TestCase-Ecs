@@ -12,6 +12,7 @@ struct Movable
 {
     public Transform ObjectTransform;
     public float Speed;
+    public Vector2 Destination;
 }
 
 struct MeleeAttackUnit { }

@@ -12,8 +12,17 @@ public class UpdateTowersSystem : IEcsRunSystem
             foreach (int i in targetSeakers)
             {
                 EcsEntity targetSeaker = targetSeakers.GetEntity(i);
-                targetSeaker.Del<Movable>();
-                targetSeaker.Del<HasTarget>();
+                ref HasTarget hasTarget = ref targetSeakers.Get2(i);
+                if (!(targetSeaker.Has<InBattleMarker>()))
+                {
+                    targetSeaker.Del<Movable>();
+                    targetSeaker.Del<HasTarget>();
+                    if (targetSeaker.Has<Navigated>())
+                    {
+                        targetSeaker.Del<Navigated>();
+                    }
+                }
+                else if (!hasTarget.target.Has<DeadMarker>()) { }
             }
         }
     }

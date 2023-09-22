@@ -33,7 +33,6 @@ struct CreateProjectileMarker { }
 
 struct Projectile
 {
-    public Vector2 Destination;
     public EcsEntity target;
     public float Damage;
     public float Speed;

@@ -13,6 +13,24 @@ public static class EntityUtils
         entityMovable.Speed = unitData.Speed;
     }
 
+    public static void ChangeColor(this EcsEntity entity, Color color)
+    {
+        if (entity.Has<ObjectComponent>())
+        {
+            ref ObjectComponent objComp = ref entity.Get<ObjectComponent>();
+            objComp.ObSr.color = color;
+        }
+    }
+
+    public static void ChangeColor(this EcsEntity entity, Sprite sprite)
+    {
+        if (entity.Has<ObjectComponent>())
+        {
+            ref ObjectComponent objComp = ref entity.Get<ObjectComponent>();
+            objComp.ObSr.sprite = sprite;
+        }
+    }
+
     public static void AddAttacker(this EcsEntity entity, StaticData staticData)
     {
         ref Attacker attacker = ref entity.Get<Attacker>();

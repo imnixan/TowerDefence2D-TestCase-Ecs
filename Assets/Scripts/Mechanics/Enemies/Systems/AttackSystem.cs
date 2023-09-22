@@ -50,6 +50,7 @@ public class AttackSystem : IEcsRunSystem
                     entity.Del<InBattleMarker>();
                     entity.Del<HasTarget>();
                     entity.AddMovable(staticData);
+                    entity.ChangeColor(Color.green);
                 }
             }
         }

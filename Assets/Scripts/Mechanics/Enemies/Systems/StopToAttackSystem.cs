@@ -5,7 +5,7 @@ using Leopotam.Ecs;
 sealed class StopToAttackSystem : IEcsRunSystem
 {
     private EcsWorld world;
-    private EcsFilter<Movable, Attacker, HasTarget> attackFilter;
+    private EcsFilter<Movable, Attacker, HasTarget, Navigated> attackFilter;
     private float distanceToTarget;
 
     public void Run()
@@ -24,7 +24,7 @@ sealed class StopToAttackSystem : IEcsRunSystem
             );
             if (distanceToTarget <= attacker.AttackRange)
             {
-                objComp.ObSr.color = Color.red;
+                attackerEntity.ChangeColor(Color.red);
                 attackerEntity.Del<Movable>();
                 attackerEntity.Del<Navigated>();
                 attackerEntity.Get<InBattleMarker>();

@@ -38,8 +38,6 @@ class SpawnSystem : IEcsRunSystem, IEcsInitSystem
         enemyEntity.AddObjectComp(staticData, pool.GetEnemyObject(), StaticData.UnitType.Enemy);
         enemyObj.ObTransform.position = GetSpawnPoint();
 
-        enemyEntity.AddMovable(staticData);
-
         UnitData unit = staticData.EnemiesData[(int)enemy.EnemyType];
         if (unit.Ranged)
         {

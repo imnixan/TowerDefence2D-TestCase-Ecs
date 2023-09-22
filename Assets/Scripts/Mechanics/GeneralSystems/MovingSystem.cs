@@ -5,7 +5,7 @@ sealed class MovingSystem : IEcsRunSystem
 {
     private EcsWorld world;
     private StaticData staticData;
-    private EcsFilter<Movable, Navigated> movableFilter;
+    private EcsFilter<Movable> movableFilter;
     private Vector2 finalPos;
 
     public void Run()
@@ -14,32 +14,33 @@ sealed class MovingSystem : IEcsRunSystem
         {
             foreach (int i in movableFilter)
             {
-                ref Movable movable = ref movableFilter.Get1(i);
-                Transform movTransform = movable.ObjectTransform;
-                ref Navigated navigation = ref movableFilter.Get2(i);
-
-                if (navigation.PathPointIndex >= navigation.Path.Count)
+                EcsEntity entity = movableFilter.GetEntity(i);
+                if (!entity.Has<Enemy>() || entity.Has<Navigated>() && entity.Has<HasTarget>())
                 {
-                    ref EcsEntity entity = ref movableFilter.GetEntity(i);
-                    entity.Del<Movable>();
-                    entity.Del<Navigated>();
-                    return;
+                    ref Movable movable = ref movableFilter.Get1(i);
+                    Transform movTransform = movable.ObjectTransform;
+
+                    movTransform.position = Vector2.MoveTowards(
+                        movTransform.position,
+                        movable.Destination,
+                        movable.Speed
+                    );
+                    if (
+                        Vector2.Distance((Vector2)movTransform.position, movable.Destination)
+                        <= movable.Speed
+                    )
+                    {
+                        entity.Del<Movable>();
+                    }
                 }
-                finalPos = navigation.Path[navigation.PathPointIndex].ConvertToWorld(
-                    staticData.FieldSize
-                );
-
-                movTransform.position = Vector2.MoveTowards(
-                    movTransform.position,
-                    finalPos,
-                    movable.Speed
-                );
-
-                if (Vector2.Distance((Vector2)movTransform.position, finalPos) <= 0.75f)
+                else
                 {
-                    navigation.PathPointIndex++;
+                    entity.Del<Movable>();
+                    entity.ChangeColor(Color.green);
                 }
             }
         }
     }
+
+    private void MoveEntity(ref EcsEntity entity) { }
 }

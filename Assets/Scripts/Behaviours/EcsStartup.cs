@@ -17,6 +17,7 @@ public class EcsStartup : MonoBehaviour
             .OneFrame<UpdateTowersMarker>()
             .Add(new SpawnSystem())
             .Add(new EnemyTargetDispencerSystem())
+            .Add(new EnemyNavigationSystem())
             .Add(new StopToAttackSystem())
             .Add(new AttackSystem())
             .Add(new CreateProjectileSystem())
@@ -36,7 +37,6 @@ public class EcsStartup : MonoBehaviour
         FixedUpdateSystems
             .Add(new MovingSystem())
             .Add(new HealthBarMovingSystem())
-            .Add(new ProjectileMovingSystem())
             .Inject(staticData)
             .Init();
     }
