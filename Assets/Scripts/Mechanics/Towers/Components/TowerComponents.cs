@@ -8,3 +8,5 @@ struct BaseTowerMarker { }
 struct TowerObserver { }
 
 struct UpdateTowersMarker { }
+
+struct UpgradeTowerMarker { }

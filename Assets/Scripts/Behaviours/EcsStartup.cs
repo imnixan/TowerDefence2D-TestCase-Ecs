@@ -13,7 +13,10 @@ public class EcsStartup : MonoBehaviour
         UpdateSystems = new EcsSystems(world);
         UpdateSystems
             .Add(new BaseTowersInit())
-            .Add(new UpdateTowersSystem())
+            .Add(new InputSystem())
+            .Add(new TowerUpgradeSystem())
+            .OneFrame<UpgradeTowerMarker>()
+            .Add(new TowerUpdateSystem())
             .OneFrame<UpdateTowersMarker>()
             .Add(new SpawnSystem())
             .Add(new EnemyTargetDispencerSystem())

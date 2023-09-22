@@ -41,6 +41,8 @@ class SpawnSystem : IEcsRunSystem, IEcsInitSystem
             StaticData.UnitType.Enemy,
             GetSpawnPoint()
         );
+        enemyObj.unitSprites = staticData.EnemiesSprites[(int)enemy.EnemyType];
+        enemyObj.ObSr.sprite = enemyObj.unitSprites.IdleSprites[0];
 
         UnitData unit = staticData.EnemiesData[(int)enemy.EnemyType];
         if (unit.Ranged)

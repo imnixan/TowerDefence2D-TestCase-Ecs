@@ -7,6 +7,8 @@ public class StaticData : MonoBehaviour
 {
     public Transform healthBarCanvas;
     public GameObject healthBarPrefab;
+    public UnitSprites[] EnemiesSprites,
+        TowersSprites;
 
     public UnitData[] EnemiesData,
         TowersData;
@@ -33,8 +35,8 @@ public class StaticData : MonoBehaviour
 
     public enum TowerType
     {
-        BaseTower,
         BuildPlace,
+        BaseTower,
         DefenceTower,
         AttackTower
     }

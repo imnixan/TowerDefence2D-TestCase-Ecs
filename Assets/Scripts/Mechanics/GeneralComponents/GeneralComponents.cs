@@ -8,6 +8,7 @@ struct ObjectComponent
     public GameObject ObGo;
     public SpriteRenderer ObSr;
     public Transform ObTransform;
+    public UnitSprites unitSprites;
     public StaticData.UnitType UnitType;
 }
 

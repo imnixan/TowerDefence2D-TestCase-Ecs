@@ -1,21 +1,32 @@
 ﻿using System.Collections;
 using UnityEngine;
+using Leopotam.Ecs;
 
-namespace Assets.Scripts.Mechanics.GeneralSystems
+sealed class InputSystem : IEcsRunSystem
 {
-    public class InputSystem : MonoBehaviour
+    private Ray ray;
+    private RaycastHit hit;
+    private StaticData staticData;
+    private EcsFilter<Tower, ObjectComponent> towerFilter;
+
+    public void Run()
     {
-
-        // Use this for initialization
-        void Start()
+        if (Input.GetMouseButtonDown(0))
         {
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
+            ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity, 1 << 6))
+                foreach (int i in towerFilter)
+                {
+                    {
+                        ref Tower tower = ref towerFilter.Get1(i);
+                        ref ObjectComponent towerObjComp = ref towerFilter.Get2(i);
+                        if (hit.collider.gameObject == towerObjComp.ObGo)
+                        {
+                            EcsEntity towerEntity = towerFilter.GetEntity(i);
+                            towerEntity.Get<UpgradeTowerMarker>();
+                        }
+                    }
+                }
         }
     }
 }

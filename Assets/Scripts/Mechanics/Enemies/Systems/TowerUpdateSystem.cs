@@ -1,6 +1,6 @@
 ﻿using Leopotam.Ecs;
 
-public class UpdateTowersSystem : IEcsRunSystem
+public class TowerUpdateSystem : IEcsRunSystem
 {
     private EcsFilter<UpdateTowersMarker> updateTowersFilter;
     private EcsFilter<Movable, HasTarget> targetSeakers;

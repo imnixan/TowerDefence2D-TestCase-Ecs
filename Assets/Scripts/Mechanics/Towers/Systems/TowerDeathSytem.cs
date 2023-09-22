@@ -4,6 +4,7 @@ using UnityEngine;
 sealed class TowerDeathSystem : IEcsRunSystem
 {
     private EcsFilter<Tower, DeadMarker> towerFilter;
+    private StaticData staticData;
 
     public void Run()
     {
@@ -23,6 +24,15 @@ sealed class TowerDeathSystem : IEcsRunSystem
                 tower.TowerType = StaticData.TowerType.BuildPlace;
                 towerEntity.Del<Health>();
                 towerEntity.Del<Attacker>();
+
+                towerEntity.AddObjectComp(
+                    staticData,
+                    objComp.ObGo,
+                    objComp.UnitType,
+                    objComp.ObTransform.position
+                );
+                objComp.unitSprites = staticData.TowersSprites[(int)tower.TowerType];
+                objComp.ObSr.sprite = objComp.unitSprites.IdleSprites[0];
             }
         }
     }
