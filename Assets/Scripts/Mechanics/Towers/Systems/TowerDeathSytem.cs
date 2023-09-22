@@ -12,6 +12,7 @@ sealed class TowerDeathSystem : IEcsRunSystem
             EcsEntity towerEntity = towerFilter.GetEntity(i);
             ref Tower tower = ref towerFilter.Get1(i);
             ref ObjectComponent objComp = ref towerEntity.Get<ObjectComponent>();
+            towerEntity.Get<UpdateTowersMarker>();
             if (towerEntity.Has<BaseTowerMarker>())
             {
                 objComp.ObSr.enabled = false;
