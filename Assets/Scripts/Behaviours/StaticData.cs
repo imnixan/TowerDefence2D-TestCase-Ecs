@@ -5,6 +5,9 @@ using EpPathFinding.cs;
 
 public class StaticData : MonoBehaviour
 {
+    public Transform healthBarCanvas;
+    public GameObject healthBarPrefab;
+
     public UnitData[] EnemiesData,
         TowersData;
 
@@ -12,9 +15,7 @@ public class StaticData : MonoBehaviour
     public BaseGrid Field;
     public JumpPointParam PathSearchingParams;
     public Vector2Int FieldSize;
-    public int TowerAttackRange;
-    public float TowerRechargeTime;
-    public float TowerDamage;
+
     public Transform towers;
 
     public enum UnitType
@@ -31,6 +32,7 @@ public class StaticData : MonoBehaviour
     public enum TowerType
     {
         BaseTower,
+        BuildPlace,
         DefenceTower,
         AttackTower
     }

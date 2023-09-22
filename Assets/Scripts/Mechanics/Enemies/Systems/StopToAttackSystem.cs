@@ -16,15 +16,15 @@ sealed class StopToAttackSystem : IEcsRunSystem
             ref Attacker attacker = ref attackFilter.Get2(i);
             ref ObjectComponent objComp = ref attackerEntity.Get<ObjectComponent>();
             ref HasTarget wantKillTarget = ref attackFilter.Get3(i);
-            ref ObjectComponent targetObjComp = ref wantKillTarget.KillList[
-                0
-            ].Get<ObjectComponent>();
+
+            ref ObjectComponent targetObjComp = ref wantKillTarget.target.Get<ObjectComponent>();
             distanceToTarget = Vector2.Distance(
                 (Vector2)objComp.ObTransform.position,
                 (Vector2)targetObjComp.ObTransform.position
             );
             if (distanceToTarget <= attacker.AttackRange)
             {
+                objComp.ObSr.color = Color.red;
                 attackerEntity.Del<Movable>();
                 attackerEntity.Del<Navigated>();
                 attackerEntity.Get<InBattleMarker>();

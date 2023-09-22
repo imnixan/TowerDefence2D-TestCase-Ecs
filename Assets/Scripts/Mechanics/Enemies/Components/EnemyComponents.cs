@@ -11,33 +11,10 @@ struct Enemy
 struct Movable
 {
     public Transform ObjectTransform;
-    public Rigidbody2D Rb;
     public float Speed;
 }
 
-struct Attacker
-{
-    public float AttackRange;
-    public float Damage;
-    public float RechargeTime;
-}
-
-struct RangeAttackUnit
-{
-    public Sprite projectile;
-}
-
 struct MeleeAttackUnit { }
-
-struct HasTarget : IEcsAutoReset<HasTarget>
-{
-    public List<EcsEntity> KillList;
-
-    public void AutoReset(ref HasTarget c)
-    {
-        c.KillList = new List<EcsEntity>();
-    }
-}
 
 struct InBattleMarker
 {

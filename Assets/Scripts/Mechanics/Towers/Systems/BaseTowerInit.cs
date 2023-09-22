@@ -1,5 +1,6 @@
 ﻿using Leopotam.Ecs;
 using UnityEngine;
+using UnityEngine.UI;
 
 sealed class BaseTowersInit : IEcsInitSystem
 {
@@ -8,6 +9,9 @@ sealed class BaseTowersInit : IEcsInitSystem
 
     public void Init()
     {
+        EcsEntity towerObserver = world.NewEntity();
+        ref TowerObserver to = ref towerObserver.Get<TowerObserver>();
+
         foreach (Transform tower in staticData.towers)
         {
             EcsEntity towerEntity = world.NewEntity();
@@ -16,14 +20,32 @@ sealed class BaseTowersInit : IEcsInitSystem
 
             UnitData unitData = staticData.TowersData[(int)towerComp.TowerType];
             ref ObjectComponent objComp = ref towerEntity.Get<ObjectComponent>();
-            objComp.ObGo = tower.gameObject;
-            objComp.ObTransform = tower;
-            objComp.ObSr = tower.gameObject.GetComponent<SpriteRenderer>();
-            objComp.UnitType = StaticData.UnitType.Tower;
+            towerEntity.AddObjectComp(staticData, tower.gameObject, StaticData.UnitType.Tower);
 
-            towerEntity.Get<BaseTowerMarker>();
-            ref Health health = ref towerEntity.Get<Health>();
-            health.HP = unitData.HP;
+            if (objComp.ObGo.CompareTag("BaseTower"))
+            {
+                towerEntity.Get<BaseTowerMarker>();
+                ref Health health = ref towerEntity.Get<Health>();
+                health.HP = unitData.HP;
+                health.MaxHp = unitData.HP;
+
+                ref HealthBar healthBar = ref towerEntity.Get<HealthBar>();
+                healthBar.hpBarTransform = Object
+                    .Instantiate(
+                        staticData.healthBarPrefab,
+                        (Vector2)objComp.ObTransform.position + Vector2.up * 3,
+                        new Quaternion(),
+                        staticData.healthBarCanvas
+                    )
+                    .transform;
+                healthBar.healthBarFill = healthBar.hpBarTransform
+                    .Find("Filler")
+                    .GetComponent<Image>();
+            }
+            staticData.Field.SetWalkableAt(
+                objComp.ObTransform.position.ConvertToNav(staticData.FieldSize),
+                false
+            );
         }
     }
 }

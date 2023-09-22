@@ -1,13 +1,14 @@
 using Leopotam.Ecs;
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 class SpawnSystem : IEcsRunSystem, IEcsInitSystem
 {
     private EcsFilter<Enemy> enemyFilter;
     private StaticData staticData;
     private EcsWorld world;
-    private PoolSystem pool;
+    private ObjectsPool pool;
 
     private int maxTop,
         maxRight;
@@ -34,7 +35,7 @@ class SpawnSystem : IEcsRunSystem, IEcsInitSystem
             UnityEngine.Random.Range(0, Enum.GetNames(typeof(StaticData.EnemyType)).Length);
 
         ref ObjectComponent enemyObj = ref enemyEntity.Get<ObjectComponent>();
-        enemyEntity.AddObjectComp(staticData, pool, StaticData.UnitType.Enemy);
+        enemyEntity.AddObjectComp(staticData, pool.GetEnemyObject(), StaticData.UnitType.Enemy);
         enemyObj.ObTransform.position = GetSpawnPoint(enemy.EnemyType);
 
         enemyEntity.AddMovable(staticData);
@@ -42,6 +43,10 @@ class SpawnSystem : IEcsRunSystem, IEcsInitSystem
         UnitData unit = staticData.EnemiesData[(int)enemy.EnemyType];
 
         enemyEntity.AddAttacker(staticData);
+
+        ref Health health = ref enemyEntity.Get<Health>();
+        health.HP = unit.HP;
+        health.MaxHp = unit.HP;
     }
 
     private Vector2 GetSpawnPoint(StaticData.EnemyType enemy)

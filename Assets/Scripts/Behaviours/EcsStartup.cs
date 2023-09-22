@@ -7,25 +7,38 @@ public class EcsStartup : MonoBehaviour
     EcsSystems UpdateSystems,
         FixedUpdateSystems;
 
-    public void StartGame(StaticData staticData, PoolSystem pool)
+    public void StartGame(StaticData staticData, ObjectsPool pool)
     {
         world = new EcsWorld();
         UpdateSystems = new EcsSystems(world);
         UpdateSystems
             .Add(new BaseTowersInit())
+            .Add(new UpdateTowersSystem())
+            .OneFrame<UpdateTowersMarker>()
             .Add(new SpawnSystem())
             .Add(new EnemyTargetDispencerSystem())
             .Add(new StopToAttackSystem())
             .Add(new AttackSystem())
+            .Add(new CreateProjectileSystem())
+            .OneFrame<CreateProjectileMarker>()
+            .Add(new ProjectileDamageSystem())
             .Add(new DamageSystem())
             .OneFrame<DamageRecieveMarker>()
-            .Add(new CleaningTargetsSystem())
-            .Add(new DeathSystem())
+            .Add(new CheckTargetAliveSystem())
+            .Add(new DeleteHealthBarSystem())
+            .Add(new EnemyDeathSystem())
+            .Add(new TowerDeathSystem())
+            .OneFrame<DeadMarker>()
             .Inject(staticData)
             .Inject(pool)
             .Init();
         FixedUpdateSystems = new EcsSystems(world);
-        FixedUpdateSystems.Add(new MovingSystem()).Inject(staticData).Init();
+        FixedUpdateSystems
+            .Add(new MovingSystem())
+            .Add(new HealthBarMovingSystem())
+            .Add(new ProjectileMovingSystem())
+            .Inject(staticData)
+            .Init();
     }
 
     void Update()

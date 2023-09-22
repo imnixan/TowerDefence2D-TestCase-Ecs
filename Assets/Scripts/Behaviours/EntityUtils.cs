@@ -11,7 +11,6 @@ public static class EntityUtils
 
         UnitData unitData = staticData.EnemiesData[GetEntityTypeNum(entity)];
         entityMovable.Speed = unitData.Speed;
-        entityMovable.Rb = objComp.ObGo.GetComponent<Rigidbody2D>();
     }
 
     public static void AddAttacker(this EcsEntity entity, StaticData staticData)
@@ -26,12 +25,12 @@ public static class EntityUtils
     public static void AddObjectComp(
         this EcsEntity entity,
         StaticData staticData,
-        PoolSystem pool,
+        GameObject go,
         StaticData.UnitType unitType
     )
     {
         ref ObjectComponent objComp = ref entity.Get<ObjectComponent>();
-        objComp.ObGo = pool.GetEnemyObject();
+        objComp.ObGo = go;
         objComp.ObSr = objComp.ObGo.GetComponent<SpriteRenderer>();
         objComp.ObTransform = objComp.ObGo.transform;
         objComp.UnitType = unitType;

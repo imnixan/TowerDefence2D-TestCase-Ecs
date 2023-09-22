@@ -11,12 +11,13 @@ public class AttackSystem : IEcsRunSystem
     {
         foreach (int i in attackingFilter)
         {
+            EcsEntity attackingEntity = attackingFilter.GetEntity(i);
             ref InBattleMarker attacking = ref attackingFilter.Get1(i);
             ref Attacker attacker = ref attackingFilter.Get2(i);
             ref ObjectComponent objComp = ref attackingFilter.Get3(i);
-            ref HasTarget hasTargets = ref attackingFilter.Get4(i);
+            ref HasTarget hasTarget = ref attackingFilter.Get4(i);
 
-            EcsEntity targetEntity = hasTargets.KillList[0];
+            EcsEntity targetEntity = hasTarget.target;
             ref ObjectComponent targetObjComp = ref targetEntity.Get<ObjectComponent>();
 
             if (
@@ -28,9 +29,16 @@ public class AttackSystem : IEcsRunSystem
                 {
                     attacking.LastAttack = Time.time;
 
-                    ref DamageRecieveMarker damageReciever =
-                        ref targetEntity.Get<DamageRecieveMarker>();
-                    damageReciever.Damage += attacker.Damage;
+                    if (attackingEntity.Has<MeleeAttackUnit>())
+                    {
+                        ref DamageRecieveMarker damageReciever =
+                            ref targetEntity.Get<DamageRecieveMarker>();
+                        damageReciever.Damage += attacker.Damage;
+                    }
+                    else
+                    {
+                        attackingEntity.Get<CreateProjectileMarker>();
+                    }
                 }
             }
             else
@@ -40,7 +48,7 @@ public class AttackSystem : IEcsRunSystem
                 {
                     ref Enemy enemy = ref entity.Get<Enemy>();
                     entity.Del<InBattleMarker>();
-
+                    entity.Del<HasTarget>();
                     entity.AddMovable(staticData);
                 }
             }

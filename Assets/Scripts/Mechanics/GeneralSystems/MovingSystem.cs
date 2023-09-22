@@ -29,8 +29,10 @@ sealed class MovingSystem : IEcsRunSystem
                     staticData.FieldSize
                 );
 
-                movable.Rb.MovePosition(
-                    Vector2.MoveTowards(movTransform.position, finalPos, movable.Speed)
+                movTransform.position = Vector2.MoveTowards(
+                    movTransform.position,
+                    finalPos,
+                    movable.Speed
                 );
 
                 if (Vector2.Distance((Vector2)movTransform.position, finalPos) <= 0.75f)

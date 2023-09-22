@@ -1,18 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
+using Leopotam.Ecs;
 using UnityEngine;
 
-public class EndGameSystem : MonoBehaviour
+public class EndGameSystem : IEcsRunSystem
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private EcsFilter<BaseTowerMarker> baseTowerFilter;
 
-    // Update is called once per frame
-    void Update()
+    public void Run()
     {
-        
+        if (baseTowerFilter.GetEntitiesCount() == 0)
+        {
+            Debug.Log("EndGame");
+        }
     }
 }
