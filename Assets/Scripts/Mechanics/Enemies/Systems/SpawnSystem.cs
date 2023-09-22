@@ -8,7 +8,7 @@ class SpawnSystem : IEcsRunSystem, IEcsInitSystem
     private EcsFilter<Enemy> enemyFilter;
     private StaticData staticData;
     private EcsWorld world;
-    private ObjectsPool pool;
+    private Pool pool;
 
     private int maxTop,
         maxRight;
@@ -36,11 +36,19 @@ class SpawnSystem : IEcsRunSystem, IEcsInitSystem
 
         ref ObjectComponent enemyObj = ref enemyEntity.Get<ObjectComponent>();
         enemyEntity.AddObjectComp(staticData, pool.GetEnemyObject(), StaticData.UnitType.Enemy);
-        enemyObj.ObTransform.position = GetSpawnPoint(enemy.EnemyType);
+        enemyObj.ObTransform.position = GetSpawnPoint();
 
         enemyEntity.AddMovable(staticData);
 
         UnitData unit = staticData.EnemiesData[(int)enemy.EnemyType];
+        if (unit.Ranged)
+        {
+            enemyEntity.Get<RangeAttackUnit>();
+        }
+        else
+        {
+            enemyEntity.Get<MeleeAttackUnit>();
+        }
 
         enemyEntity.AddAttacker(staticData);
 
@@ -49,7 +57,7 @@ class SpawnSystem : IEcsRunSystem, IEcsInitSystem
         health.MaxHp = unit.HP;
     }
 
-    private Vector2 GetSpawnPoint(StaticData.EnemyType enemy)
+    private Vector2 GetSpawnPoint()
     {
         bool fromVertical = UnityEngine.Random.value > 0.5f;
         if (fromVertical)

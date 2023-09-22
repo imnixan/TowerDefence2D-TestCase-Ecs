@@ -34,12 +34,9 @@ struct CreateProjectileMarker { }
 struct Projectile
 {
     public Vector2 Destination;
-    public GameObject ObjGo;
-    public Transform ObjTransform;
     public EcsEntity target;
     public float Damage;
     public float Speed;
-    public SpriteRenderer Sr;
 }
 
 struct Health

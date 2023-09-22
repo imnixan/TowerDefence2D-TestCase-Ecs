@@ -3,15 +3,16 @@ using UnityEngine;
 
 public class ProjectileDamageSystem : IEcsRunSystem
 {
-    private EcsFilter<Projectile> projectiles;
-    private ObjectsPool objectsPool;
+    private EcsFilter<Projectile, ObjectComponent> projectiles;
+    private Pool objectsPool;
 
     public void Run()
     {
         foreach (int i in projectiles)
         {
             ref Projectile projectile = ref projectiles.Get1(i);
-            if ((Vector2)projectile.ObjTransform.position == projectile.Destination)
+            ref ObjectComponent objComp = ref projectiles.Get2(i);
+            if ((Vector2)objComp.ObTransform.position == projectile.Destination)
             {
                 EcsEntity target = projectile.target;
                 ref DamageRecieveMarker damageMarker = ref target.Get<DamageRecieveMarker>();
@@ -23,9 +24,9 @@ public class ProjectileDamageSystem : IEcsRunSystem
 
     private void DestroyProjectile(EcsEntity projectile)
     {
-        ref Projectile proj = ref projectile.Get<Projectile>();
+        ref ObjectComponent proj = ref projectile.Get<ObjectComponent>();
 
-        objectsPool.ReturnProjObjectInPool(proj.ObjGo);
+        objectsPool.ReturnProjObjectInPool(proj.ObGo);
 
         projectile.Destroy();
     }

@@ -24,25 +24,23 @@ public class EnemyTargetDispencerSystem : IEcsInitSystem, IEcsRunSystem
 
     public void Run()
     {
-        double startRun = Time.realtimeSinceStartup;
         if (noNavFilter.GetEntitiesCount() > 0)
         {
-            foreach (int i in noNavFilter)
+            ref EcsEntity obj = ref noNavFilter.GetEntity(0);
+            if (aliveTowersFilter.GetEntitiesCount() > 0)
             {
-                ref EcsEntity obj = ref noNavFilter.GetEntity(i);
                 obj.Get<ObjectComponent>().ObSr.color = Color.blue;
                 ref Navigated navigatedComp = ref obj.Get<Navigated>();
-
                 navigatedComp.Path = GetPathForNearestTower(ref obj);
-                if (navigatedComp.Path != null)
-                {
-                    ref HasTarget hasTargets = ref obj.Get<HasTarget>();
-                    hasTargets.target = closestTower;
-                }
-                else
-                {
-                    obj.Del<Movable>();
-                }
+                ref HasTarget hasTargets = ref obj.Get<HasTarget>();
+                hasTargets.target = closestTower;
+            }
+            else
+            {
+                EcsEntity entity = noNavFilter.GetEntity(0);
+                entity.Del<Movable>();
+                ref ObjectComponent objComp = ref entity.Get<ObjectComponent>();
+                objComp.ObSr.color = Color.green;
             }
         }
     }
@@ -52,18 +50,16 @@ public class EnemyTargetDispencerSystem : IEcsInitSystem, IEcsRunSystem
         ref Movable movable = ref entity.Get<Movable>();
         Vector2 startPos = movable.ObjectTransform.position;
 
-        if (SetClosestTower(ref entity))
-        {
-            ref ObjectComponent objComp = ref closestTower.Get<ObjectComponent>();
+        SetClosestTower(ref entity);
 
-            finalPos = objComp.ObTransform.position.ConvertToNav(staticData.FieldSize);
-            pathSearchingParams.Reset(startPos.ConvertToNav(staticData.FieldSize), finalPos);
-            return JumpPointFinder.FindPath(pathSearchingParams);
-        }
-        return null;
+        ref ObjectComponent objComp = ref closestTower.Get<ObjectComponent>();
+
+        finalPos = objComp.ObTransform.position.ConvertToNav(staticData.FieldSize);
+        pathSearchingParams.Reset(startPos.ConvertToNav(staticData.FieldSize), finalPos);
+        return JumpPointFinder.FindPath(pathSearchingParams);
     }
 
-    private bool SetClosestTower(ref EcsEntity entity)
+    private void SetClosestTower(ref EcsEntity entity)
     {
         float distance = 0;
         float minimalDistance = staticData.FieldSize.x * staticData.FieldSize.y;
@@ -83,6 +79,5 @@ public class EnemyTargetDispencerSystem : IEcsInitSystem, IEcsRunSystem
                 minimalDistance = distance;
             }
         }
-        return distance > 0;
     }
 }

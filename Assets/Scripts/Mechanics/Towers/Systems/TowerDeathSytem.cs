@@ -14,7 +14,8 @@ sealed class TowerDeathSystem : IEcsRunSystem
             ref ObjectComponent objComp = ref towerEntity.Get<ObjectComponent>();
             if (towerEntity.Has<BaseTowerMarker>())
             {
-                Object.Destroy(objComp.ObGo);
+                objComp.ObSr.enabled = false;
+                towerEntity.Del<BaseTowerMarker>();
             }
             else
             {

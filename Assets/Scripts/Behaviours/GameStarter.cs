@@ -14,7 +14,7 @@ public class GameStarter : MonoBehaviour
     private EcsStartup ecsStartup;
 
     [SerializeField]
-    private ObjectsPool poolSystem;
+    private Pool poolSystem;
 
     private void Start()
     {

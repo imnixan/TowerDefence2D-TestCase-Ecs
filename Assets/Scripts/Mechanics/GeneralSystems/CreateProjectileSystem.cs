@@ -5,7 +5,7 @@ using Leopotam.Ecs;
 public class CreateProjectileSystem : IEcsRunSystem
 {
     private EcsWorld world;
-    private ObjectsPool objectsPool;
+    private Pool objectsPool;
     private EcsFilter<
         Attacker,
         RangeAttackUnit,
@@ -23,10 +23,11 @@ public class CreateProjectileSystem : IEcsRunSystem
 
             EcsEntity projectileEntity = world.NewEntity();
             ref Projectile projectile = ref projectileEntity.Get<Projectile>();
-            projectile.ObjGo = objectsPool.GetProjObj();
-            projectile.ObjTransform = projectile.ObjGo.transform;
-            projectile.Sr = projectile.ObjGo.GetComponent<SpriteRenderer>();
-            projectile.Sr.sprite = rangeAttacker.projectileSprite;
+            ref ObjectComponent objComp = ref projectileEntity.Get<ObjectComponent>();
+            objComp.ObGo = objectsPool.GetProjObj();
+            objComp.ObTransform = objComp.ObGo.transform;
+            objComp.ObSr = objComp.ObGo.GetComponent<SpriteRenderer>();
+            objComp.ObSr.sprite = rangeAttacker.projectileSprite;
             projectile.Destination = hasTarget.target.Get<ObjectComponent>().ObTransform.position;
             projectile.Speed = rangeAttacker.ProjecttileSpeed;
             projectile.target = hasTarget.target;

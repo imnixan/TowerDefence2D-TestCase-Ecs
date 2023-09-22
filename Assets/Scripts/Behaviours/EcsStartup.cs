@@ -7,7 +7,7 @@ public class EcsStartup : MonoBehaviour
     EcsSystems UpdateSystems,
         FixedUpdateSystems;
 
-    public void StartGame(StaticData staticData, ObjectsPool pool)
+    public void StartGame(StaticData staticData, Pool pool)
     {
         world = new EcsWorld();
         UpdateSystems = new EcsSystems(world);
@@ -25,7 +25,7 @@ public class EcsStartup : MonoBehaviour
             .Add(new DamageSystem())
             .OneFrame<DamageRecieveMarker>()
             .Add(new CheckTargetAliveSystem())
-            .Add(new DeleteHealthBarSystem())
+            .Add(new UpdateHPBarSystem())
             .Add(new EnemyDeathSystem())
             .Add(new TowerDeathSystem())
             .OneFrame<DeadMarker>()
