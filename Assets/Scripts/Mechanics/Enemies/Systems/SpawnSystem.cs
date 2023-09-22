@@ -31,8 +31,8 @@ class SpawnSystem : IEcsRunSystem, IEcsInitSystem
     {
         EcsEntity enemyEntity = world.NewEntity();
         ref Enemy enemy = ref enemyEntity.Get<Enemy>();
-        enemy.EnemyType = (StaticData.EnemyType)
-            UnityEngine.Random.Range(0, Enum.GetNames(typeof(StaticData.EnemyType)).Length);
+        enemy.EnemyType = (StaticData.EnemyType)1;
+        //UnityEngine.Random.Range(0, Enum.GetNames(typeof(StaticData.EnemyType)).Length);
 
         ref ObjectComponent enemyObj = ref enemyEntity.Get<ObjectComponent>();
         enemyEntity.AddObjectComp(staticData, pool.GetEnemyObject(), StaticData.UnitType.Enemy);

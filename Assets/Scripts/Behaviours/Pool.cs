@@ -5,7 +5,8 @@ using UnityEngine;
 public class Pool : MonoBehaviour
 {
     [SerializeField]
-    private GameObject enemyPrefab;
+    private GameObject enemyPrefab,
+        projectilePrefab;
     private List<GameObject> enemiesPool = new List<GameObject>();
     private List<GameObject> prjectilesPool = new List<GameObject>();
 
@@ -33,17 +34,18 @@ public class Pool : MonoBehaviour
         enemiesPool.Add(objToPool);
     }
 
-    public GameObject GetProjObj()
+    public GameObject GetProjObj(Vector2 pos)
     {
         if (prjectilesPool.Count > 0)
         {
             go = prjectilesPool[0];
             go.SetActive(true);
+            go.transform.position = pos;
             prjectilesPool.RemoveAt(0);
         }
         else
         {
-            go = Instantiate(enemyPrefab);
+            go = Instantiate(projectilePrefab, pos, new Quaternion());
         }
 
         return go;

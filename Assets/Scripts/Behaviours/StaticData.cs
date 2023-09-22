@@ -21,12 +21,14 @@ public class StaticData : MonoBehaviour
     public enum UnitType
     {
         Enemy,
-        Tower
+        Tower,
+        Projectile
     }
 
     public enum EnemyType
     {
-        Goblin
+        Goblin,
+        Archer
     }
 
     public enum TowerType

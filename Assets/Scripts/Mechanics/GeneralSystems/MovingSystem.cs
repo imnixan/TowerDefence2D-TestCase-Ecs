@@ -5,7 +5,7 @@ sealed class MovingSystem : IEcsRunSystem
 {
     private EcsWorld world;
     private StaticData staticData;
-    private EcsFilter<Movable> movableFilter;
+    private EcsFilter<Movable, ObjectComponent> movableFilter;
     private Vector2 finalPos;
 
     public void Run()
@@ -18,7 +18,8 @@ sealed class MovingSystem : IEcsRunSystem
                 if (!entity.Has<Enemy>() || entity.Has<Navigated>() && entity.Has<HasTarget>())
                 {
                     ref Movable movable = ref movableFilter.Get1(i);
-                    Transform movTransform = movable.ObjectTransform;
+                    ref ObjectComponent objComp = ref movableFilter.Get2(i);
+                    Transform movTransform = objComp.ObTransform;
 
                     movTransform.position = Vector2.MoveTowards(
                         movTransform.position,

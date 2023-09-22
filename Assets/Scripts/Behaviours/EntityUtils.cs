@@ -7,7 +7,7 @@ public static class EntityUtils
     {
         ref Movable entityMovable = ref entity.Get<Movable>();
         ref ObjectComponent objComp = ref entity.Get<ObjectComponent>();
-        entityMovable.ObjectTransform = objComp.ObGo.transform;
+        objComp.ObTransform = objComp.ObGo.transform;
 
         UnitData unitData = staticData.EnemiesData[GetEntityTypeNum(entity)];
         entityMovable.Speed = unitData.Speed;

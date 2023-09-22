@@ -5,7 +5,7 @@ sealed class HealthBarMovingSystem : IEcsRunSystem
 {
     private EcsWorld world;
     private StaticData staticData;
-    private EcsFilter<Movable, HealthBar> movableWithHPFilter;
+    private EcsFilter<Movable, ObjectComponent, HealthBar> movableWithHPFilter;
 
     public void Run()
     {
@@ -14,10 +14,11 @@ sealed class HealthBarMovingSystem : IEcsRunSystem
             foreach (int i in movableWithHPFilter)
             {
                 ref Movable movable = ref movableWithHPFilter.Get1(i);
-                ref HealthBar healthBar = ref movableWithHPFilter.Get2(i);
+                ref ObjectComponent objComp = ref movableWithHPFilter.Get2(i);
+                ref HealthBar healthBar = ref movableWithHPFilter.Get3(i);
 
                 healthBar.hpBarTransform.position =
-                    (Vector2)movable.ObjectTransform.position + Vector2.up * 3;
+                    (Vector2)objComp.ObTransform.position + Vector2.up * 3;
             }
         }
     }

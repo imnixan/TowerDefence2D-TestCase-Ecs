@@ -1093,6 +1093,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 4012811694843966490, guid: aaaf32980d1243e40a56afd2881555ac, type: 3}
+  projectilePrefab: {fileID: 4012811694843966490, guid: aca6cb42a5b719a4398fb2a794f43747, type: 3}
 --- !u!4 &1102212383
 Transform:
   m_ObjectHideFlags: 0
@@ -1294,6 +1295,7 @@ MonoBehaviour:
   healthBarPrefab: {fileID: 2676241130495307410, guid: 4708cc55d425e704b983fdddb1fac1f8, type: 3}
   EnemiesData:
   - {fileID: 11400000, guid: 4ea06b36fa780334e84d21d567acc6d6, type: 2}
+  - {fileID: 11400000, guid: 999998d9abed3364c86f59d36b966714, type: 2}
   TowersData:
   - {fileID: 11400000, guid: 11c800e4905a4c54db4464b7efc89381, type: 2}
   MaxEnemies: 1000
