@@ -35,8 +35,12 @@ class SpawnSystem : IEcsRunSystem, IEcsInitSystem
         //UnityEngine.Random.Range(0, Enum.GetNames(typeof(StaticData.EnemyType)).Length);
 
         ref ObjectComponent enemyObj = ref enemyEntity.Get<ObjectComponent>();
-        enemyEntity.AddObjectComp(staticData, pool.GetEnemyObject(), StaticData.UnitType.Enemy);
-        enemyObj.ObTransform.position = GetSpawnPoint();
+        enemyEntity.AddObjectComp(
+            staticData,
+            pool.GetEnemyObject(),
+            StaticData.UnitType.Enemy,
+            GetSpawnPoint()
+        );
 
         UnitData unit = staticData.EnemiesData[(int)enemy.EnemyType];
         if (unit.Ranged)

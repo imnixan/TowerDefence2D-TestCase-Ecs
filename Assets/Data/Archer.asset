@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Archer
   m_EditorClassIdentifier: 
   HP: 100
-  Damage: 10
+  Damage: 1
   AttackRange: 3
   RechargeTime: 0.5
   Speed: 0.1

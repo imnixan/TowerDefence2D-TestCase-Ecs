@@ -44,13 +44,15 @@ public static class EntityUtils
         this EcsEntity entity,
         StaticData staticData,
         GameObject go,
-        StaticData.UnitType unitType
+        StaticData.UnitType unitType,
+        Vector2 pos
     )
     {
         ref ObjectComponent objComp = ref entity.Get<ObjectComponent>();
         objComp.ObGo = go;
         objComp.ObSr = objComp.ObGo.GetComponent<SpriteRenderer>();
         objComp.ObTransform = objComp.ObGo.transform;
+        objComp.ObTransform.position = pos;
         objComp.UnitType = unitType;
     }
 

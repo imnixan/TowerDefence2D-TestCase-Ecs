@@ -7,6 +7,10 @@ public class Pool : MonoBehaviour
     [SerializeField]
     private GameObject enemyPrefab,
         projectilePrefab;
+
+    [SerializeField]
+    private Transform enemiesParent,
+        projectParent;
     private List<GameObject> enemiesPool = new List<GameObject>();
     private List<GameObject> prjectilesPool = new List<GameObject>();
 
@@ -22,7 +26,7 @@ public class Pool : MonoBehaviour
         }
         else
         {
-            go = Instantiate(enemyPrefab);
+            go = Instantiate(enemyPrefab, enemiesParent);
         }
 
         return go;
@@ -34,18 +38,17 @@ public class Pool : MonoBehaviour
         enemiesPool.Add(objToPool);
     }
 
-    public GameObject GetProjObj(Vector2 pos)
+    public GameObject GetProjObj()
     {
         if (prjectilesPool.Count > 0)
         {
             go = prjectilesPool[0];
             go.SetActive(true);
-            go.transform.position = pos;
             prjectilesPool.RemoveAt(0);
         }
         else
         {
-            go = Instantiate(projectilePrefab, pos, new Quaternion());
+            go = Instantiate(projectilePrefab, projectParent);
         }
 
         return go;

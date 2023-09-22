@@ -17,7 +17,7 @@ sealed class StopToAttackSystem : IEcsRunSystem
             ref ObjectComponent objComp = ref attackerEntity.Get<ObjectComponent>();
             ref HasTarget wantKillTarget = ref attackFilter.Get3(i);
 
-            ref ObjectComponent targetObjComp = ref wantKillTarget.target.Get<ObjectComponent>();
+            ref ObjectComponent targetObjComp = ref wantKillTarget.Target.Get<ObjectComponent>();
             distanceToTarget = Vector2.Distance(
                 (Vector2)objComp.ObTransform.position,
                 (Vector2)targetObjComp.ObTransform.position

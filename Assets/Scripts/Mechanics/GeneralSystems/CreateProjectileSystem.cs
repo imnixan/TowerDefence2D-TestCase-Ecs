@@ -27,18 +27,21 @@ public class CreateProjectileSystem : IEcsRunSystem
             ref Projectile projectile = ref projectileEntity.Get<Projectile>();
             projectileEntity.AddObjectComp(
                 staticData,
-                pool.GetProjObj(AttackerObjComp.ObTransform.position),
-                StaticData.UnitType.Projectile
+                pool.GetProjObj(),
+                StaticData.UnitType.Projectile,
+                AttackerObjComp.ObTransform.position
             );
+
             ref ObjectComponent ProjObjComp = ref projectileEntity.Get<ObjectComponent>();
 
             projectileEntity.AddMovable(staticData);
 
             ref Movable movable = ref projectileEntity.Get<Movable>();
-            movable.Destination = hasTarget.target.Get<ObjectComponent>().ObTransform.position;
+            ref ObjectComponent targetObjComp = ref hasTarget.Target.Get<ObjectComponent>();
+            movable.Destination = targetObjComp.ObTransform.position;
 
             projectile.Speed = rangeAttacker.ProjecttileSpeed;
-            projectile.target = hasTarget.target;
+            projectile.Attacker = rangeAttackFilter.GetEntity(i);
             projectile.Damage = attacker.Damage;
         }
     }

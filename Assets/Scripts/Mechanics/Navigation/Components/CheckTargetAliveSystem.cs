@@ -12,7 +12,7 @@ public class CheckTargetAliveSystem : IEcsRunSystem
         {
             EcsEntity entity = targetsFilter.GetEntity(i);
             ref HasTarget targets = ref targetsFilter.Get1(i);
-            EcsEntity targetEntity = targets.target;
+            EcsEntity targetEntity = targets.Target;
             if (targetEntity.Has<DeadMarker>())
             {
                 entity.Del<HasTarget>();

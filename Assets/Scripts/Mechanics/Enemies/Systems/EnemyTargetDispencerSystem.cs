@@ -33,7 +33,7 @@ public class EnemyTargetDispencerSystem : IEcsInitSystem, IEcsRunSystem
                 ref Navigated navigatedComp = ref obj.Get<Navigated>();
                 navigatedComp.Path = GetPathForNearestTower(ref obj);
                 ref HasTarget hasTargets = ref obj.Get<HasTarget>();
-                hasTargets.target = closestTower;
+                hasTargets.Target = closestTower;
             }
             else
             {

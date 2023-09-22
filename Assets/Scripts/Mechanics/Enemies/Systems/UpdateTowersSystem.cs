@@ -22,7 +22,7 @@ public class UpdateTowersSystem : IEcsRunSystem
                         targetSeaker.Del<Navigated>();
                     }
                 }
-                else if (!hasTarget.target.Has<DeadMarker>()) { }
+                else if (!hasTarget.Target.Has<DeadMarker>()) { }
             }
         }
     }

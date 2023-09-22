@@ -20,7 +20,12 @@ sealed class BaseTowersInit : IEcsInitSystem
 
             UnitData unitData = staticData.TowersData[(int)towerComp.TowerType];
             ref ObjectComponent objComp = ref towerEntity.Get<ObjectComponent>();
-            towerEntity.AddObjectComp(staticData, tower.gameObject, StaticData.UnitType.Tower);
+            towerEntity.AddObjectComp(
+                staticData,
+                tower.gameObject,
+                StaticData.UnitType.Tower,
+                tower.position
+            );
 
             if (objComp.ObGo.CompareTag("BaseTower"))
             {

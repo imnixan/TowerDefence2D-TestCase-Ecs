@@ -17,7 +17,7 @@ public class AttackSystem : IEcsRunSystem
             ref ObjectComponent objComp = ref attackingFilter.Get3(i);
             ref HasTarget hasTarget = ref attackingFilter.Get4(i);
 
-            EcsEntity targetEntity = hasTarget.target;
+            EcsEntity targetEntity = hasTarget.Target;
             ref ObjectComponent targetObjComp = ref targetEntity.Get<ObjectComponent>();
 
             if (
