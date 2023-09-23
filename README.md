@@ -11,4 +11,11 @@ Tower types:
 
 Enemies types:
 - goblin, melee attack;
-- archers, range attack; 
+- archers, range attack;
+
+Code organisation:
+
+
+Gameplay based on LeoEcs systems;
+
+Entry point - class GameStarter which start class EcsStart, when player hit play button;
