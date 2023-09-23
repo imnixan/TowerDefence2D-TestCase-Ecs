@@ -44,13 +44,12 @@ public class AttackSystem : IEcsRunSystem
             else
             {
                 ref EcsEntity entity = ref attackingFilter.GetEntity(i);
+                entity.Del<InBattleMarker>();
+                entity.Del<HasTarget>();
                 if (entity.Has<Enemy>())
                 {
-                    ref Enemy enemy = ref entity.Get<Enemy>();
-                    entity.Del<InBattleMarker>();
                     entity.Del<HasTarget>();
                     entity.AddMovable(staticData);
-                    entity.ChangeColor(Color.green);
                 }
             }
         }

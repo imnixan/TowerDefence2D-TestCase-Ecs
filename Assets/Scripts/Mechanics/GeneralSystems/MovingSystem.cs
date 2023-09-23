@@ -37,7 +37,6 @@ sealed class MovingSystem : IEcsRunSystem
                 else
                 {
                     entity.Del<Movable>();
-                    entity.ChangeColor(Color.green);
                 }
             }
         }

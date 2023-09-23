@@ -18,7 +18,6 @@ public class CheckTargetAliveSystem : IEcsRunSystem
                 entity.Del<HasTarget>();
                 entity.Del<InBattleMarker>();
                 entity.Del<InBattleMarker>();
-                entity.ChangeColor(Color.red);
                 entity.AddMovable(staticData);
             }
         }

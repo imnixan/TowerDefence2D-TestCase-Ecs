@@ -20,6 +20,7 @@ public class EcsStartup : MonoBehaviour
             .OneFrame<UpdateTowersMarker>()
             .Add(new SpawnSystem())
             .Add(new EnemyTargetDispencerSystem())
+            .Add(new TowerTargetDispencerSystem())
             .Add(new EnemyNavigationSystem())
             .Add(new StopToAttackSystem())
             .Add(new AttackSystem())

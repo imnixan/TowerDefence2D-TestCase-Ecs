@@ -425,19 +425,22 @@ Transform:
   m_Father: {fileID: 862863094}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &563590506
-BoxCollider:
+--- !u!58 &563590506
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 563590503}
+  m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 2.1875, y: 4.0625, z: 0.2}
-  m_Center: {x: 0, y: 1.015625, z: 0}
+  m_Radius: 2
 --- !u!1 &765430821
 GameObject:
   m_ObjectHideFlags: 0
@@ -625,19 +628,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!65 &871445537
-BoxCollider:
+--- !u!58 &871445537
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 871445534}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 2.1875, y: 1.90625, z: 0.2}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 2
 --- !u!1 &924928840
 GameObject:
   m_ObjectHideFlags: 0
@@ -754,19 +760,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!65 &964227022
-BoxCollider:
+--- !u!58 &964227022
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 964227019}
+  m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 2.1875, y: 1.90625, z: 0.2}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 2
 --- !u!1 &1006882679
 GameObject:
   m_ObjectHideFlags: 0
@@ -952,19 +961,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!65 &1084296741
-BoxCollider:
+--- !u!58 &1084296741
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1084296738}
+  m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 2.1875, y: 1.90625, z: 0.2}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 2
 --- !u!1 &1102212381
 GameObject:
   m_ObjectHideFlags: 0
@@ -1100,19 +1112,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!65 &1129188042
-BoxCollider:
+--- !u!58 &1129188042
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1129188039}
+  m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 2.1875, y: 1.90625, z: 0.2}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 2
 --- !u!1 &1271931567
 GameObject:
   m_ObjectHideFlags: 0
@@ -1175,7 +1190,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 11c800e4905a4c54db4464b7efc89381, type: 2}
   - {fileID: 11400000, guid: d337e5ae9f7ca68479ed374eb468069d, type: 2}
   - {fileID: 11400000, guid: ffd2adf10799c794ea19ca9ef974c78e, type: 2}
-  MaxEnemies: 100
+  MaxEnemies: 1000
   FieldSize: {x: 100, y: 100}
   towers: {fileID: 0}
 --- !u!1 &1282542094
@@ -1263,19 +1278,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!65 &1282542097
-BoxCollider:
+--- !u!58 &1282542097
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1282542094}
+  m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 2.1875, y: 1.90625, z: 0.2}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 2
 --- !u!1 &1372113155
 GameObject:
   m_ObjectHideFlags: 0
@@ -100581,19 +100599,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!65 &1602360023
-BoxCollider:
+--- !u!58 &1602360023
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1602360020}
+  m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 2.1875, y: 1.90625, z: 0.2}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 2
 --- !u!1 &1666169493
 GameObject:
   m_ObjectHideFlags: 0
@@ -100679,19 +100700,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!65 &1666169496
-BoxCollider:
+--- !u!58 &1666169496
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1666169493}
+  m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 2.1875, y: 1.90625, z: 0.2}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 2
 --- !u!1 &1782140951
 GameObject:
   m_ObjectHideFlags: 0
@@ -100837,16 +100861,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!65 &1911829736
-BoxCollider:
+--- !u!58 &1911829736
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1911829733}
+  m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 2.1875, y: 1.90625, z: 0.2}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 2

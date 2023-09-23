@@ -9,9 +9,6 @@ sealed class BaseTowersInit : IEcsInitSystem
 
     public void Init()
     {
-        EcsEntity towerObserver = world.NewEntity();
-        ref TowerObserver to = ref towerObserver.Get<TowerObserver>();
-
         foreach (Transform tower in staticData.towers)
         {
             EcsEntity towerEntity = world.NewEntity();

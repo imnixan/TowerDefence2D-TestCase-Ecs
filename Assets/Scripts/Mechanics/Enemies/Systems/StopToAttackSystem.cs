@@ -24,7 +24,6 @@ sealed class StopToAttackSystem : IEcsRunSystem
             );
             if (distanceToTarget <= attacker.AttackRange)
             {
-                attackerEntity.ChangeColor(Color.red);
                 attackerEntity.Del<Movable>();
                 attackerEntity.Del<Navigated>();
                 attackerEntity.Get<InBattleMarker>();

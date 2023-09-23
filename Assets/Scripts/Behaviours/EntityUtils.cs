@@ -13,20 +13,7 @@ public static class EntityUtils
         entityMovable.Speed = unitData.Speed;
     }
 
-    public static void ChangeColor(this EcsEntity entity, Color color)
-    {
-        if (entity.Has<ObjectComponent>())
-        {
-            ref ObjectComponent objComp = ref entity.Get<ObjectComponent>();
-            objComp.ObSr.color = color;
-            if (color == Color.green)
-            {
-                Debug.Log("Green");
-            }
-        }
-    }
-
-    public static void ChangeColor(this EcsEntity entity, Sprite sprite)
+    public static void ChangeSprite(this EcsEntity entity, Sprite sprite)
     {
         if (entity.Has<ObjectComponent>())
         {

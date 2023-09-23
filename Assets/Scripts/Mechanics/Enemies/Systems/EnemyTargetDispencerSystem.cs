@@ -29,12 +29,11 @@ public class EnemyTargetDispencerSystem : IEcsInitSystem, IEcsRunSystem
             if (aliveTowersFilter.GetEntitiesCount() > 0)
             {
                 ref EcsEntity entity = ref noNavFilter.GetEntity(0);
-                entity.ChangeColor(Color.blue);
+
                 ref Navigated navigatedComp = ref entity.Get<Navigated>();
                 navigatedComp.Path = GetPathForNearestTower(ref entity);
                 ref HasTarget hasTargets = ref entity.Get<HasTarget>();
                 hasTargets.Target = closestTower;
-                entity.Del<WaitingForNavigation>();
             }
             else
             {
@@ -43,7 +42,6 @@ public class EnemyTargetDispencerSystem : IEcsInitSystem, IEcsRunSystem
                     ref EcsEntity entity = ref noNavFilter.GetEntity(i);
                     entity.Del<Attacker>();
                     ref ObjectComponent objComp = ref entity.Get<ObjectComponent>();
-                    objComp.ObSr.color = Color.green;
                 }
             }
         }
