@@ -9,7 +9,7 @@ sealed class EnemyDeathSystem : IEcsRunSystem
     {
         foreach (int i in enemyFilter)
         {
-            EcsEntity enemyEntity = enemyFilter.GetEntity(i);
+            ref EcsEntity enemyEntity = ref enemyFilter.GetEntity(i);
             ref ObjectComponent objComp = ref enemyEntity.Get<ObjectComponent>();
             Object.Destroy(objComp.ObGo);
             enemyEntity.Destroy();

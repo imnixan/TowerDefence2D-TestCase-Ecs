@@ -14,8 +14,9 @@ public class DamageSystem : IEcsRunSystem
             health.HP -= damage.Damage;
             if (health.HP <= 0)
             {
-                EcsEntity entity = damageFilter.GetEntity(i);
+                ref EcsEntity entity = ref damageFilter.GetEntity(i);
                 entity.Get<DeadMarker>();
+                Debug.Log("text");
             }
         }
     }

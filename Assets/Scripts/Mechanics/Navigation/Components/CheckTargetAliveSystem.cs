@@ -10,9 +10,9 @@ public class CheckTargetAliveSystem : IEcsRunSystem
     {
         foreach (int i in targetsFilter)
         {
-            EcsEntity entity = targetsFilter.GetEntity(i);
+            ref EcsEntity entity = ref targetsFilter.GetEntity(i);
             ref HasTarget targets = ref targetsFilter.Get1(i);
-            EcsEntity targetEntity = targets.Target;
+            ref EcsEntity targetEntity = ref targets.Target;
             if (targetEntity.Has<DeadMarker>())
             {
                 entity.Del<HasTarget>();

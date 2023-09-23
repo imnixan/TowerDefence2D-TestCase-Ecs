@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 89d4cfcdbc031d449b90466c2dfe4711, type: 3}
-  m_Name: BaseTowerSprites 1
+  m_Name: BaseTowerSprites
   m_EditorClassIdentifier: 
   IdleSprites:
   - {fileID: -6754239384357436178, guid: e9fcd102e4d692b4aa1c555db2335384, type: 3}

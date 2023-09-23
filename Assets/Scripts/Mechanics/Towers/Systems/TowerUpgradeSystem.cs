@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 using Leopotam.Ecs;
+using UnityEngine.UI;
 
 public class TowerUpgradeSystem : IEcsRunSystem
 {
@@ -11,15 +12,17 @@ public class TowerUpgradeSystem : IEcsRunSystem
     {
         foreach (int i in upgradeFilter)
         {
-            EcsEntity towerEntity = upgradeFilter.GetEntity(i);
+            ref EcsEntity towerEntity = ref upgradeFilter.GetEntity(i);
             ref Tower tower = ref upgradeFilter.Get3(i);
             switch (tower.TowerType)
             {
                 case StaticData.TowerType.BuildPlace:
                     UpgradeTowerToDefence(towerEntity);
+                    towerEntity.Get<UpdateTowersMarker>();
                     break;
                 case StaticData.TowerType.DefenceTower:
                     UpgradeTowerToAttacker(towerEntity);
+
                     break;
                 case StaticData.TowerType.AttackTower:
                     HealTower(towerEntity);
@@ -52,7 +55,7 @@ public class TowerUpgradeSystem : IEcsRunSystem
         attacker.Damage = unitData.Damage;
         towerEntity.Get<RangeAttackUnit>();
 
-        HealTower(towerEntity);
+        HealTower(towerEntity, unitData);
     }
 
     private void UpgradeTowerToDefence(EcsEntity towerEntity)
@@ -68,8 +71,37 @@ public class TowerUpgradeSystem : IEcsRunSystem
         );
         objComp.unitSprites = staticData.TowersSprites[(int)tower.TowerType];
         objComp.ObSr.sprite = objComp.unitSprites.IdleSprites[0];
+        UnitData unitData = staticData.TowersData[(int)tower.TowerType];
 
-        HealTower(towerEntity);
+        ref Health health = ref towerEntity.Get<Health>();
+        health.HP = unitData.HP;
+        health.MaxHp = unitData.HP;
+
+        ref HealthBar healthBar = ref towerEntity.Get<HealthBar>();
+        healthBar.hpBarTransform = Object
+            .Instantiate(
+                staticData.healthBarPrefab,
+                (Vector2)objComp.ObTransform.position + Vector2.up * 3,
+                new Quaternion(),
+                staticData.healthBarCanvas
+            )
+            .transform;
+        healthBar.healthBarFill = healthBar.hpBarTransform.Find("Filler").GetComponent<Image>();
+        staticData.Field.SetWalkableAt(
+            objComp.ObTransform.position.ConvertToNav(staticData.FieldSize),
+            false
+        );
+
+        HealTower(towerEntity, unitData);
+    }
+
+    private void HealTower(EcsEntity towerEntity, UnitData unitData)
+    {
+        ref Tower towerComp = ref towerEntity.Get<Tower>();
+
+        ref Health health = ref towerEntity.Get<Health>();
+        health.HP = unitData.HP;
+        health.MaxHp = unitData.HP;
     }
 
     private void HealTower(EcsEntity towerEntity)

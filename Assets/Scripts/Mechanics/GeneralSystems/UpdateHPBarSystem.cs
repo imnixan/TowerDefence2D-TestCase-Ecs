@@ -10,12 +10,13 @@ sealed class UpdateHPBarSystem : IEcsRunSystem
     {
         foreach (int i in hpBarFilter)
         {
-            EcsEntity ent = hpBarFilter.GetEntity(i);
+            ref EcsEntity ent = ref hpBarFilter.GetEntity(i);
             if (ent.Has<DeadMarker>())
             {
                 ref HealthBar healthbar = ref hpBarFilter.Get1(i);
                 Object.Destroy(healthbar.hpBarTransform.gameObject);
-                ent.Destroy();
+                ent.Del<HealthBar>();
+                ent.Del<Health>();
             }
             else
             {

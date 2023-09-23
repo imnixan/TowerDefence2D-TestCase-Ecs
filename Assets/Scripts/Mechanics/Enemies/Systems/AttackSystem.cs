@@ -11,7 +11,7 @@ public class AttackSystem : IEcsRunSystem
     {
         foreach (int i in attackingFilter)
         {
-            EcsEntity attackingEntity = attackingFilter.GetEntity(i);
+            ref EcsEntity attackingEntity = ref attackingFilter.GetEntity(i);
             ref InBattleMarker attacking = ref attackingFilter.Get1(i);
             ref Attacker attacker = ref attackingFilter.Get2(i);
             ref ObjectComponent objComp = ref attackingFilter.Get3(i);
@@ -43,7 +43,7 @@ public class AttackSystem : IEcsRunSystem
             }
             else
             {
-                EcsEntity entity = attackingFilter.GetEntity(i);
+                ref EcsEntity entity = ref attackingFilter.GetEntity(i);
                 if (entity.Has<Enemy>())
                 {
                     ref Enemy enemy = ref entity.Get<Enemy>();

@@ -25,6 +25,7 @@ public class GameMapGenerator : MonoBehaviour
         this.staticData = staticData;
         BaseGrid field = new StaticGrid(staticData.FieldSize.x, staticData.FieldSize.y);
         SetAllWalkable(field);
+
         staticData.Field = field;
 
         DiagonalMovement iDiagonalMovement = DiagonalMovement.OnlyWhenNoObstacles;

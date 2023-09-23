@@ -14,7 +14,7 @@ sealed class MovingSystem : IEcsRunSystem
         {
             foreach (int i in movableFilter)
             {
-                EcsEntity entity = movableFilter.GetEntity(i);
+                ref EcsEntity entity = ref movableFilter.GetEntity(i);
                 if (!entity.Has<Enemy>() || entity.Has<Navigated>() && entity.Has<HasTarget>())
                 {
                     ref Movable movable = ref movableFilter.Get1(i);
@@ -42,6 +42,4 @@ sealed class MovingSystem : IEcsRunSystem
             }
         }
     }
-
-    private void MoveEntity(ref EcsEntity entity) { }
 }

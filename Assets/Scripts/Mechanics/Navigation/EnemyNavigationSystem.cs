@@ -11,7 +11,7 @@ public class EnemyNavigationSystem : IEcsRunSystem
     {
         foreach (int i in navigatedFilter)
         {
-            EcsEntity entity = navigatedFilter.GetEntity(i);
+            ref EcsEntity entity = ref navigatedFilter.GetEntity(i);
             entity.AddMovable(staticData);
             ref Movable movable = ref entity.Get<Movable>();
             ref Navigated navigated = ref navigatedFilter.Get1(i);

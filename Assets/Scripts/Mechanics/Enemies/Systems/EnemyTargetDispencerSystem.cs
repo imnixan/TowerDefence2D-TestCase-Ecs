@@ -26,20 +26,25 @@ public class EnemyTargetDispencerSystem : IEcsInitSystem, IEcsRunSystem
     {
         if (noNavFilter.GetEntitiesCount() > 0)
         {
-            ref EcsEntity obj = ref noNavFilter.GetEntity(0);
             if (aliveTowersFilter.GetEntitiesCount() > 0)
             {
-                obj.ChangeColor(Color.blue);
-                ref Navigated navigatedComp = ref obj.Get<Navigated>();
-                navigatedComp.Path = GetPathForNearestTower(ref obj);
-                ref HasTarget hasTargets = ref obj.Get<HasTarget>();
+                ref EcsEntity entity = ref noNavFilter.GetEntity(0);
+                entity.ChangeColor(Color.blue);
+                ref Navigated navigatedComp = ref entity.Get<Navigated>();
+                navigatedComp.Path = GetPathForNearestTower(ref entity);
+                ref HasTarget hasTargets = ref entity.Get<HasTarget>();
                 hasTargets.Target = closestTower;
+                entity.Del<WaitingForNavigation>();
             }
             else
             {
-                obj.Del<Attacker>();
-                ref ObjectComponent objComp = ref obj.Get<ObjectComponent>();
-                objComp.ObSr.color = Color.green;
+                foreach (int i in noNavFilter)
+                {
+                    ref EcsEntity entity = ref noNavFilter.GetEntity(i);
+                    entity.Del<Attacker>();
+                    ref ObjectComponent objComp = ref entity.Get<ObjectComponent>();
+                    objComp.ObSr.color = Color.green;
+                }
             }
         }
     }

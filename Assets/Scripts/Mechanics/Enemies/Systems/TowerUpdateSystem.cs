@@ -11,7 +11,7 @@ public class TowerUpdateSystem : IEcsRunSystem
         {
             foreach (int i in targetSeakers)
             {
-                EcsEntity targetSeaker = targetSeakers.GetEntity(i);
+                ref EcsEntity targetSeaker = ref targetSeakers.GetEntity(i);
                 ref HasTarget hasTarget = ref targetSeakers.Get2(i);
                 if (!(targetSeaker.Has<InBattleMarker>()))
                 {
@@ -22,7 +22,6 @@ public class TowerUpdateSystem : IEcsRunSystem
                         targetSeaker.Del<Navigated>();
                     }
                 }
-                else if (!hasTarget.Target.Has<DeadMarker>()) { }
             }
         }
     }

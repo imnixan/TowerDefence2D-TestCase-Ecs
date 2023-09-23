@@ -22,7 +22,7 @@ sealed class InputSystem : IEcsRunSystem
                         ref ObjectComponent towerObjComp = ref towerFilter.Get2(i);
                         if (hit.collider.gameObject == towerObjComp.ObGo)
                         {
-                            EcsEntity towerEntity = towerFilter.GetEntity(i);
+                            ref EcsEntity towerEntity = ref towerFilter.GetEntity(i);
                             towerEntity.Get<UpgradeTowerMarker>();
                         }
                     }

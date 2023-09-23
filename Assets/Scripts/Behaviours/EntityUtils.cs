@@ -19,6 +19,10 @@ public static class EntityUtils
         {
             ref ObjectComponent objComp = ref entity.Get<ObjectComponent>();
             objComp.ObSr.color = color;
+            if (color == Color.green)
+            {
+                Debug.Log("Green");
+            }
         }
     }
 
