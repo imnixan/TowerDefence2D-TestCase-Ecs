@@ -2,6 +2,13 @@
 using UnityEngine.UI;
 using Leopotam.Ecs;
 using System.Collections.Generic;
+using TMPro;
+
+struct GuiComp
+{
+    public float EnemiesKilled;
+    public TextMeshProUGUI KillCounter;
+}
 
 struct ObjectComponent
 {

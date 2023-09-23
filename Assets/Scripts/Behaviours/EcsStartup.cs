@@ -32,6 +32,7 @@ public class EcsStartup : MonoBehaviour
             .OneFrame<DamageRecieveMarker>()
             .Add(new CheckTargetAliveSystem())
             .Add(new UpdateHPBarSystem())
+            .Add(new UISystem())
             .Add(new EnemyDeathSystem())
             .Add(new TowerDeathSystem())
             .OneFrame<DeadMarker>()
@@ -42,6 +43,7 @@ public class EcsStartup : MonoBehaviour
         FixedUpdateSystems
             .Add(new MovingSystem())
             .Add(new HealthBarMovingSystem())
+            .Add(new EndGameSystem())
             .Inject(staticData)
             .Init();
     }

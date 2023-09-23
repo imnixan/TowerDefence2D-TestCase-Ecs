@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using EpPathFinding.cs;
+using TMPro;
 
 public class StaticData : MonoBehaviour
 {
+    public TextMeshProUGUI KillCounter;
     public Transform healthBarCanvas;
     public GameObject healthBarPrefab;
     public UnitSprites[] EnemiesSprites,
