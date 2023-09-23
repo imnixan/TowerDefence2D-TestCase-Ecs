@@ -10,26 +10,31 @@ public class ProjectileDamageSystem : IEcsRunSystem
     {
         foreach (int i in projectiles)
         {
+            ref EcsEntity ptEntity = ref projectiles.GetEntity(i);
             ref Projectile projectile = ref projectiles.Get1(i);
             ref ObjectComponent objComp = ref projectiles.Get2(i);
-            ref EcsEntity attackerEntity = ref projectile.Attacker;
 
-            if (attackerEntity.Has<HasTarget>())
+            if (ptEntity.Has<HasTarget>())
             {
-                ref Attacker attacker = ref attackerEntity.Get<Attacker>();
-                ref EcsEntity target = ref attackerEntity.Get<HasTarget>().Target;
-                ref ObjectComponent targetObj = ref target.Get<ObjectComponent>();
+                ref HasTarget ptTarget = ref ptEntity.Get<HasTarget>();
+                ref EcsEntity targetEntity = ref ptTarget.Target;
+
+                ref ObjectComponent targetObj = ref targetEntity.Get<ObjectComponent>();
                 if (
                     Vector2.Distance(objComp.ObTransform.position, targetObj.ObTransform.position)
-                    <= attacker.AttackRange
+                    <= 0.5f
                 )
                 {
-                    ref DamageRecieveMarker damageMarker = ref target.Get<DamageRecieveMarker>();
+                    ref DamageRecieveMarker damageMarker =
+                        ref targetEntity.Get<DamageRecieveMarker>();
                     damageMarker.Damage += projectile.Damage;
+                    DestroyProjectile(ptEntity);
                 }
             }
-
-            DestroyProjectile(projectiles.GetEntity(i));
+            else
+            {
+                DestroyProjectile(ptEntity);
+            }
         }
     }
 

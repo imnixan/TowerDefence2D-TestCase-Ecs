@@ -6,4 +6,5 @@ public class UnitSprites : ScriptableObject
     public Sprite[] IdleSprites;
     public Sprite[] MoveSprites;
     public Sprite[] AttackSprites;
+    public Sprite projectileSprite;
 }

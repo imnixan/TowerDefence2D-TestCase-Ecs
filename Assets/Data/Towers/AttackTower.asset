@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d53608bf49543c4889dfd15642e686e, type: 3}
   m_Name: AttackTower
   m_EditorClassIdentifier: 
-  HP: 250
-  Damage: 0
-  AttackRange: 0
-  RechargeTime: 0
+  HP: 500
+  Damage: 100
+  AttackRange: 10
+  RechargeTime: 0.5
   Speed: 0
-  Ranged: 0
+  Ranged: 1
+  ProjectilesSpeed: 0.5

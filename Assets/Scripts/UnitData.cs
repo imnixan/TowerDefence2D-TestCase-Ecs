@@ -9,4 +9,5 @@ public class UnitData : ScriptableObject
     public float RechargeTime;
     public float Speed;
     public bool Ranged;
+    public float ProjectilesSpeed;
 }

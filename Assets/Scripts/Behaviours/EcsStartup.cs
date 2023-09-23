@@ -22,6 +22,7 @@ public class EcsStartup : MonoBehaviour
             .Add(new EnemyTargetDispencerSystem())
             .Add(new TowerTargetDispencerSystem())
             .Add(new EnemyNavigationSystem())
+            .Add(new ProjectileNavSystem())
             .Add(new StopToAttackSystem())
             .Add(new AttackSystem())
             .Add(new CreateProjectileSystem())

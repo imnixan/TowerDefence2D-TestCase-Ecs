@@ -17,8 +17,10 @@ public class CheckTargetAliveSystem : IEcsRunSystem
             {
                 entity.Del<HasTarget>();
                 entity.Del<InBattleMarker>();
-                entity.Del<InBattleMarker>();
-                entity.AddMovable(staticData);
+                if (entity.Has<Enemy>())
+                {
+                    entity.AddMovable(staticData);
+                }
             }
         }
     }

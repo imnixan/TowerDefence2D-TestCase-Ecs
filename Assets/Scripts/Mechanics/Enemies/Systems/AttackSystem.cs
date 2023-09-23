@@ -48,7 +48,6 @@ public class AttackSystem : IEcsRunSystem
                 entity.Del<HasTarget>();
                 if (entity.Has<Enemy>())
                 {
-                    entity.Del<HasTarget>();
                     entity.AddMovable(staticData);
                 }
             }

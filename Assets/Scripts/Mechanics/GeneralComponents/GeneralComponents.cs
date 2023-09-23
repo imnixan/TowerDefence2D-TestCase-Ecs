@@ -26,7 +26,7 @@ struct HasTarget
 
 struct RangeAttackUnit
 {
-    public Sprite projectileSprite;
+    public Sprite ProjectileSprite;
     public float ProjecttileSpeed;
 }
 
@@ -34,7 +34,6 @@ struct CreateProjectileMarker { }
 
 struct Projectile
 {
-    public EcsEntity Attacker;
     public float Damage;
     public float Speed;
 }

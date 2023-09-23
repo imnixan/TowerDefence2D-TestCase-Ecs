@@ -15,6 +15,7 @@ MonoBehaviour:
   HP: 100
   Damage: 1
   AttackRange: 3
-  RechargeTime: 0.5
-  Speed: 0.1
+  RechargeTime: 2
+  Speed: 0.05
   Ranged: 1
+  ProjectilesSpeed: 0.5

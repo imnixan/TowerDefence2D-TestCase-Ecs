@@ -26,7 +26,6 @@ sealed class TowerDeathSystem : IEcsRunSystem
                 towerEntity.Del<Health>();
                 towerEntity.Del<Attacker>();
                 towerEntity.Del<RangeAttackUnit>();
-                towerEntity.Del<AttackTower>();
                 towerEntity.Del<HasTarget>();
 
                 objComp.unitSprites = staticData.TowersSprites[(int)tower.TowerType];

@@ -187,7 +187,19 @@ MonoBehaviour:
   towers: {fileID: 862863094}
   obstaclePref: {fileID: 8515927791461286376, guid: 7a452e226f4f6b64f9b5180e3cc32f4a, type: 3}
   obstaclesSprites:
-  - {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
+  - {fileID: 21300000, guid: b54cbddb15fcd2c4b9f5bc03eddcad8d, type: 3}
+  - {fileID: 21300000, guid: 10e802a9a23706a40831f9f7276070ea, type: 3}
+  - {fileID: 21300000, guid: eb4cd6e6d2c203343adfab4f1ed83c50, type: 3}
+  - {fileID: 21300000, guid: 77402621970e94643a728113679bd348, type: 3}
+  - {fileID: 21300000, guid: 47a16be43bcb1484daff80ed57ad842e, type: 3}
+  - {fileID: 21300000, guid: 1feddc23ef9f52e418a78798295250ef, type: 3}
+  - {fileID: 21300000, guid: 892821a812cf84a4ea27f551df0eb503, type: 3}
+  - {fileID: 21300000, guid: 59a416804909e1d45a5371ced2bce405, type: 3}
+  - {fileID: 21300000, guid: 447fc276612f1d0468aba931228f34bd, type: 3}
+  - {fileID: 21300000, guid: afda38db191946a40a0c76727b890ebb, type: 3}
+  - {fileID: 21300000, guid: c025086ead4ec9a4f877d69bf1b409b5, type: 3}
+  - {fileID: 21300000, guid: f1af7772e2c001545ae63c8efd19373a, type: 3}
+  - {fileID: 21300000, guid: b4666525e02807b48862c99087852b97, type: 3}
 --- !u!1 &227749699
 GameObject:
   m_ObjectHideFlags: 0
@@ -1190,7 +1202,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 11c800e4905a4c54db4464b7efc89381, type: 2}
   - {fileID: 11400000, guid: d337e5ae9f7ca68479ed374eb468069d, type: 2}
   - {fileID: 11400000, guid: ffd2adf10799c794ea19ca9ef974c78e, type: 2}
-  MaxEnemies: 1000
+  MaxEnemies: 10
   FieldSize: {x: 100, y: 100}
   towers: {fileID: 0}
 --- !u!1 &1282542094
@@ -1367,7 +1379,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: -3
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16

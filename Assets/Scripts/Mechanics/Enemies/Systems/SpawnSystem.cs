@@ -47,7 +47,9 @@ class SpawnSystem : IEcsRunSystem, IEcsInitSystem
         UnitData unit = staticData.EnemiesData[(int)enemy.EnemyType];
         if (unit.Ranged)
         {
-            enemyEntity.Get<RangeAttackUnit>();
+            ref RangeAttackUnit rangeAttack = ref enemyEntity.Get<RangeAttackUnit>();
+            rangeAttack.ProjecttileSpeed = unit.ProjectilesSpeed;
+            rangeAttack.ProjectileSprite = enemyObj.unitSprites.projectileSprite;
         }
         else
         {

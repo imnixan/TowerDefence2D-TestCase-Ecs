@@ -53,6 +53,7 @@ public class TowerUpgradeSystem : IEcsRunSystem
         ref Attacker attacker = ref towerEntity.Get<Attacker>();
         attacker.AttackRange = unitData.AttackRange;
         attacker.Damage = unitData.Damage;
+        attacker.RechargeTime = unitData.RechargeTime;
         towerEntity.Get<RangeAttackUnit>();
 
         HealTower(towerEntity, unitData);

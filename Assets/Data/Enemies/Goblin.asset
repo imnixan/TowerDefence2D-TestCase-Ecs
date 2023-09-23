@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Goblin
   m_EditorClassIdentifier: 
   HP: 100
-  Damage: 10
+  Damage: 2
   AttackRange: 1
-  RechargeTime: 0.75
+  RechargeTime: 1.5
   Speed: 0.1
   Ranged: 0

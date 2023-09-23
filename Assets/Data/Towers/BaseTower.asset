@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d53608bf49543c4889dfd15642e686e, type: 3}
   m_Name: BaseTower
   m_EditorClassIdentifier: 
-  HP: 1000000
+  HP: 1000
   Damage: 0
   AttackRange: 0
   RechargeTime: 0
