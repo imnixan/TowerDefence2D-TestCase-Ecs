@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: ArcherSprites
   m_EditorClassIdentifier: 
   IdleSprites:
-  - {fileID: -451506409, guid: 7b2bd5df6a4c77c48a58f04fe42c6a8e, type: 3}
+  - {fileID: 2847894867104497665, guid: 7b2bd5df6a4c77c48a58f04fe42c6a8e, type: 3}
   MoveSprites: []
   AttackSprites: []
+  projectileSprite: {fileID: 0}

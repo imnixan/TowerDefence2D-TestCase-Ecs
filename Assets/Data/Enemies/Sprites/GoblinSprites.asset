@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: GoblinSprites
   m_EditorClassIdentifier: 
   IdleSprites:
-  - {fileID: 70380595, guid: 19a629a507ba0fb4abeb1ff24cb10297, type: 3}
+  - {fileID: 6808733625049879353, guid: 19a629a507ba0fb4abeb1ff24cb10297, type: 3}
   MoveSprites: []
   AttackSprites: []
+  projectileSprite: {fileID: 0}
